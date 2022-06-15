@@ -4,7 +4,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import { convertToHTML } from 'draft-convert';
 import DOMPurify from 'dompurify';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 
 const CreateArticle = () => {
   const [editorState, setEditorState] = useState(() =>
@@ -32,8 +32,11 @@ const CreateArticle = () => {
 
   return (
     <div className="App">
-      <header className="App-header">Write your Editorial below</header>
+      <Typography variant="h4" sx={{ my: 5 }} fontWeight={700} gutterBottom>
+        Drop your thoughts
+      </Typography>
       <TextField
+        sx={{ mb: 3 }}
         autoComplete="title"
         name="titlr"
         required
