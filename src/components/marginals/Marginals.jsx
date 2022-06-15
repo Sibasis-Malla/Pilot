@@ -16,7 +16,7 @@ export default function Marginals({ children }) {
     >
       <CssBaseline />
       <Navbar />
-      <Container maxWidth="lg" sx={{ mt: 10 }}>
+      <Container maxWidth="lg" sx={{ my: 10 }}>
         {children}
       </Container>
 

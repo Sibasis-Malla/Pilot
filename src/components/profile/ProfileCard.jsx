@@ -2,13 +2,12 @@ import React from 'react';
 
 // Libraries
 import {
-  Container,
   Grid,
   Typography,
   Card,
   CardContent,
   Button,
-  IconButton
+  IconButton,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import AddTaskIcon from '@mui/icons-material/AddTask';
@@ -31,7 +30,6 @@ const UserCard = () => {
                     className={classes.profileImage}
                     src="https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png"
                     alt="user photo"
-                    style={{ height: 135, width: 135 }}
                   />
                 </div>
                 <div className={classes.userData}>
@@ -146,13 +144,13 @@ const UserCard = () => {
 };
 export default UserCard;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   wrapper: {
     margin: '1.5rem auto 0 auto ',
     maxWidth: '1200px',
   },
   card: {
-    // boxShadow: theme.shadows[0],
+    boxShadow: theme.shadows[0],
   },
   boldText: {
     fontFamily: 'Source Sans Pro',
@@ -164,38 +162,40 @@ const useStyles = makeStyles(() => ({
     width: '100%',
     paddingLeft: '1.5rem',
     paddingRight: '1.5rem',
-    // [theme.breakpoints.down('md')]: {
-    //   marginTop: '2rem',
-    // },
-    // [theme.breakpoints.down('sm')]: {
-    //   paddingLeft: '1rem',
-    //   paddingRight: '1rem',
-    // },
+    [theme.breakpoints.down('md')]: {
+      marginTop: '2rem',
+    },
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: '1rem',
+      paddingRight: '1rem',
+    },
   },
   bordered: {
     width: '100%',
     borderLeft: '1px solid',
-    // borderColor: theme.palette.secondary.neutral50,
-    // [theme.breakpoints.down('sm')]: {
-    //   paddingTop: '2rem',
-    //   paddingBottom: '2rem',
-    //   borderLeft: 'unset',
-    //   borderTop: '1px solid',
-    //   borderColor: theme.palette.secondary.neutral50,
-    // },
+    borderColor: theme.palette.secondary.neutral50,
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '2rem',
+      paddingBottom: '2rem',
+      borderLeft: 'unset',
+      borderTop: '1px solid',
+      borderColor: theme.palette.secondary.neutral50,
+    },
   },
   userWrapper: {
     display: 'flex',
     justifyContent: 'space-around',
-    // [theme.breakpoints.down('md')]: {
-    //   flexDirection: 'column',
-    // },
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+    },
   },
   imageWrapper: {
     alignSelf: 'center',
   },
   profileImage: {
     borderRadius: '50%',
+    height: 135,
+    width: 135,
   },
   columnFlex: {
     display: 'flex',
@@ -204,9 +204,9 @@ const useStyles = makeStyles(() => ({
     height: '100%',
   },
   userName: {
-    // [theme.breakpoints.down('lg')]: {
-    //   textAlign: 'center',
-    // },
+    [theme.breakpoints.down('lg')]: {
+      textAlign: 'center',
+    },
   },
   postDetailsWrapper: {
     display: 'flex',
@@ -221,10 +221,10 @@ const useStyles = makeStyles(() => ({
   postInfo: {
     display: 'flex',
     justifyContent: 'center',
-    // [theme.breakpoints.down('lg')]: {
-    //   fontSize: '1.5rem',
-    //   alignText: 'center',
-    // },
+    [theme.breakpoints.down('lg')]: {
+      fontSize: '1.5rem',
+      alignText: 'center',
+    },
   },
   postInfoNumber: {
     alignSelf: 'center',
