@@ -1,7 +1,20 @@
 import React from 'react';
+import MainFeaturedPost from '../components/home/MainFeaturedPost';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
+import Trendings from '../components/home/Trendings';
 
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <>
+      <Carousel autoPlay={true} infiniteLoop={true} showStatus={false}>
+        <MainFeaturedPost />
+        <MainFeaturedPost />
+        <MainFeaturedPost />
+      </Carousel>
+      <Trendings />
+    </>
+  );
 };
 
 export default HomePage;
