@@ -6,28 +6,39 @@ import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import limitString from '../../utils/LimitString';
+import { Link } from 'react-router-dom';
 
 function SmallBlogCard({ n }) {
   return (
     <Grid item xs={12} md={12} sx={{ my: 2 }}>
       <CardActionArea component="a" href="#">
-        <Card sx={{ display: 'flex' }}>
+        <Card sx={{ display: 'flex', backgroundColor: '#242629' }}>
           <CardContent sx={{ flex: 1 }}>
-            <Typography component="h5" variant="h5">
+            <Typography component="h5" sx={{ color: '#fffffe' }} variant="h5">
               Post Title
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              sx={{ color: '#fffffe' }}
+              color="text.secondary"
+            >
               Nov 11
             </Typography>
-            <Typography variant="body2" paragraph>
+            <Typography variant="body2" sx={{ color: '#94a1b2' }} paragraph>
               {limitString(
                 'Cum sociis natoque penatibus et magnis Cum sociis natoque penatibus et magnis Cum sociis natoque penatibus et magnis Cum sociis natoque penatibus et magnis',
                 n
               )}
             </Typography>
-            <Typography variant="body2" color="primary">
-              Continue reading...
-            </Typography>
+            <Link style={{ textDecoration: 'none' }} to="/article">
+              <Typography
+                variant="body2"
+                sx={{ color: '#7f5af0' }}
+                color="primary"
+              >
+                Continue reading...
+              </Typography>
+            </Link>
           </CardContent>
           <CardMedia
             component="img"

@@ -8,7 +8,10 @@ const ProfilePage = () => {
   return (
     <div>
       <UserCard />
-      <Typography variant="h4" sx={{ mt: 10, fontWeight: 700 }}>
+      <Typography
+        variant="h4"
+        sx={{ mt: 10, fontWeight: 700, color: '#fffffe' }}
+      >
         Popular Blogs
       </Typography>
       <Grid container spacing={3} sx={{ mt: 1, mb: 10 }}>
@@ -17,7 +20,10 @@ const ProfilePage = () => {
         <BlogCard />
         <BlogCard />
       </Grid>
-      <Typography variant="h4" sx={{ mt: 10, fontWeight: 700 }}>
+      <Typography
+        variant="h4"
+        sx={{ mt: 10, fontWeight: 700, color: '#fffffe' }}
+      >
         All Blogs
       </Typography>
       <Grid container spacing={3} sx={{ mt: 1, mb: 10 }}>

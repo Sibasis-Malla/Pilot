@@ -11,7 +11,7 @@ export default function Marginals({ children }) {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
-        backgroundColor: '#d4d8f0',
+        backgroundColor: '#16161a',
       }}
     >
       <CssBaseline />
@@ -27,12 +27,12 @@ export default function Marginals({ children }) {
           px: 2,
           mt: 'auto',
           textAlign: 'center',
-          backgroundColor: '#232946',
+          backgroundColor: '#242629',
         }}
       >
         <Typography
           variant="body1"
-          style={{ color: '#b8c1ec' }}
+          style={{ color: '#fffffe' }}
         >
           Made with ❤ by Team StarFox
         </Typography>

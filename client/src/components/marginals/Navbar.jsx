@@ -1,15 +1,40 @@
-import React,{useContext} from 'react';
+import React,{useContext, useState} from 'react';
 
-import { Typography, Button, Container } from '@mui/material';
+import {
+  Typography,
+  Button,
+  Container,
+  Menu,
+  MenuItem,
+  Box,
+  Tooltip,
+  IconButton,
+  Avatar,
+  Stack,
+} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
 import { Add, WindowRounded } from '@mui/icons-material';
 import Web3Context from '../../context';
+import RocketIcon from '@mui/icons-material/Rocket';
 
 function Navbar() {
   const classes = useStyles();
   const { connectWallet, account,loginStat,login } = useContext(Web3Context);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const settings = [
+    { link: '/profile', text: 'Profile' },
+    { link: '/article/create', text: 'Write' },
+    { link: '/', text: 'Sign Out' },
+  ];
 
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
   return (
     <div className={classes.root}>
     <Link to="/" className={classes.logoContainer}>
@@ -80,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     height: '70px',
     position: 'fixed',
     top: 0,
-    backgroundColor: '#232946',
+    backgroundColor: '#16161a',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -88,10 +113,12 @@ const useStyles = makeStyles((theme) => ({
   },
   logoContainer: {
     textDecoration: 'none',
+    color: '#fffffe',
   },
   logo: {
-    color: '#fff',
+    color: '#fffffe',
     textTransform: 'uppercase',
+    fontFamily: 'monospace',
   },
   tabsContainer: {
     display: 'flex',

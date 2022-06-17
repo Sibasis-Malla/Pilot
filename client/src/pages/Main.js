@@ -15,15 +15,24 @@ function Main(props) {
         '& .markdown': {
           py: 3,
         },
+        color: '#94a1b2',
       }}
     >
-      <Typography variant="h3" fontWeight={700} gutterBottom>
+      <Typography
+        variant="h3"
+        fontWeight={700}
+        sx={{ color: '#fffffe' }}
+        gutterBottom
+      >
         {title}
       </Typography>
-      <Divider />
       <Stack
         direction="row"
-        sx={{ display: 'flex', justifyContent: 'space-between' }}
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          color: '#fffffe',
+        }}
       >
         <Stack direction="row" spacing={1} sx={{ py: 1 }}>
           <Typography variant="body2">Tech, Design, Business</Typography>
@@ -32,7 +41,7 @@ function Main(props) {
           16 Jun 2022
         </Typography>
       </Stack>
-      <Divider />
+      <Divider sx={{ backgroundColor: '#94a1b2' }} />
       <p>
         This blog post shows a few different types of content that are supported
         and styled with Material styles. Basic typography, images, and code are
