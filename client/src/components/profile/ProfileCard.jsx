@@ -19,127 +19,136 @@ const UserCard = () => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
-      <CardContent>
-        <Grid container>
-          <Grid item md={4} sm={12} className={classes.gridPadding}>
-            <img
-              className={classes.profileImage}
-              src="https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png"
-              alt="user photo"
-            />
-            <Stack direction="row" spacing={2} sx={{ mt: 2, width: '100%' }}>
-              <Button fullWidth variant="contained">
-                Follow
-              </Button>
-              <Button fullWidth variant="outlined">
-                Subscribe
-              </Button>
-            </Stack>
-          </Grid>
-          <Grid item md={8} sm={12} className={classes.gridPadding}>
-            <div className={classes.userData}>
-              <div className={classes.columnFlex}>
-                <div className={classes.userName}>
-                  <Typography variant="h4">Sambit Sankalp</Typography>
+    <div className={classes.wrapper}>
+      <Card className={classes.card}>
+        <CardContent>
+          <Grid container>
+            <Grid item md={4} sm={12} className={classes.gridPadding}>
+              <img
+                className={classes.profileImage}
+                src="https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png"
+                alt="user photo"
+              />
+              <Stack direction="row" spacing={2} sx={{ mt: 2, width: '100%' }}>
+                <Button fullWidth variant="contained">
+                  Follow
+                </Button>
+                <Button fullWidth variant="outlined">
+                  Subscribe
+                </Button>
+              </Stack>
+            </Grid>
+            <Grid item md={8} sm={12} className={classes.gridPadding}>
+              <div className={classes.userData}>
+                <div className={classes.columnFlex}>
+                  <div className={classes.userName}>
+                    <Typography variant="h4">Sambit Sankalp</Typography>
+                  </div>
+                  <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+                    <Typography variant="h6">
+                      <span style={{ fontWeight: 700 }}>100</span> followers
+                    </Typography>
+                    <Typography variant="h6">
+                      <span style={{ fontWeight: 700 }}>45</span> posts
+                    </Typography>
+                    <Typography variant="h6">
+                      <span style={{ fontWeight: 700 }}>67</span> subscribers
+                    </Typography>
+                  </Stack>
+                  <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
+                    <Typography variant="h6">
+                      <span style={{ fontWeight: 700 }}>Genre</span> -{' '}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        backgroundColor: '#000',
+                        color: '#fff',
+                        py: 0.5,
+                        px: 2,
+                        borderRadius: '20%',
+                      }}
+                    >
+                      Tech
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        backgroundColor: '#000',
+                        color: '#fff',
+                        py: 0.5,
+                        px: 2,
+                        borderRadius: '20%',
+                      }}
+                    >
+                      Design
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        backgroundColor: '#000',
+                        color: '#fff',
+                        py: 0.5,
+                        px: 2,
+                        borderRadius: '20%',
+                      }}
+                    >
+                      Bussiness
+                    </Typography>
+                  </Stack>
+                  <Typography sx={{ mt: 3.5 }} variant="body1">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Quos blanditiis tenetur unde suscipit, quam beatae rerum
+                    inventore consectetur, neque doloribus, cupiditate numquam
+                    dignissimos laborum fugiat deleniti? Eum quasi quidem
+                    quibusdam.Lorem ipsum dolor sit amet, consectetur
+                    adipisicing elit. Quos blanditiis tenetur unde suscipit,
+                    quam beatae rerum inventore consectetur, neque doloribus,
+                    cupiditate numquam dignissimos laborum fugiat deleniti? Eum
+                    quasi quidem quibusdam.
+                  </Typography>
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    sx={{ mt: 4, justifyContent: 'flex-end' }}
+                  >
+                    <IconButton aria-label="delete" color="primary">
+                      <Facebook />
+                    </IconButton>
+                    <IconButton aria-label="delete" color="primary">
+                      <Instagram />
+                    </IconButton>
+                    <IconButton color="primary" aria-label="add an alarm">
+                      <Twitter />
+                    </IconButton>
+                    <IconButton
+                      color="primary"
+                      aria-label="add to shopping cart"
+                    >
+                      <Mail />
+                    </IconButton>
+                  </Stack>
                 </div>
-                <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
-                  <Typography variant="h6">
-                    <span style={{ fontWeight: 700 }}>100</span> followers
-                  </Typography>
-                  <Typography variant="h6">
-                    <span style={{ fontWeight: 700 }}>45</span> posts
-                  </Typography>
-                  <Typography variant="h6">
-                    <span style={{ fontWeight: 700 }}>67</span> subscribers
-                  </Typography>
-                </Stack>
-                <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
-                  <Typography variant="h6">
-                    <span style={{ fontWeight: 700 }}>Genre</span> -{' '}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      backgroundColor: '#000',
-                      color: '#fff',
-                      py: 0.5,
-                      px: 2,
-                      borderRadius: '20%',
-                    }}
-                  >
-                    Tech
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      backgroundColor: '#000',
-                      color: '#fff',
-                      py: 0.5,
-                      px: 2,
-                      borderRadius: '20%',
-                    }}
-                  >
-                    Design
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      backgroundColor: '#000',
-                      color: '#fff',
-                      py: 0.5,
-                      px: 2,
-                      borderRadius: '20%',
-                    }}
-                  >
-                    Bussiness
-                  </Typography>
-                </Stack>
-                <Typography sx={{ mt: 3.5 }} variant="body1">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-                  blanditiis tenetur unde suscipit, quam beatae rerum inventore
-                  consectetur, neque doloribus, cupiditate numquam dignissimos
-                  laborum fugiat deleniti? Eum quasi quidem quibusdam.Lorem
-                  ipsum dolor sit amet, consectetur adipisicing elit. Quos
-                  blanditiis tenetur unde suscipit, quam beatae rerum inventore
-                  consectetur, neque doloribus, cupiditate numquam dignissimos
-                  laborum fugiat deleniti? Eum quasi quidem quibusdam.
-                </Typography>
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  sx={{ mt: 4, justifyContent: 'flex-end' }}
-                >
-                  <IconButton aria-label="delete" color="primary">
-                    <Facebook />
-                  </IconButton>
-                  <IconButton aria-label="delete" color="primary">
-                    <Instagram />
-                  </IconButton>
-                  <IconButton color="primary" aria-label="add an alarm">
-                    <Twitter />
-                  </IconButton>
-                  <IconButton color="primary" aria-label="add to shopping cart">
-                    <Mail />
-                  </IconButton>
-                </Stack>
               </div>
-            </div>
+            </Grid>
           </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 export default UserCard;
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    margin: '1.5rem auto 0 auto ',
-    maxWidth: '1200px',
+    display: 'flex',
+    minHeight: '550px',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   card: {
-    // background: 'transparent',
+    padding: '10px 0px',
+    paddingTop: '20px',
   },
   boldText: {
     fontFamily: 'Source Sans Pro',

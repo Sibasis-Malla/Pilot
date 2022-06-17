@@ -1,9 +1,9 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import { Typography, Button } from '@mui/material';
+import SamllBlogCard from '../components/profile/SmallBlogCard';
 
 function Sidebar() {
   return (
@@ -50,6 +50,11 @@ function Sidebar() {
           sed consectetur.
         </Typography>
       </Paper>
+      <Typography variant="h6" fontWeight={700} gutterBottom sx={{ mt: 3 }}>
+        More from the Author
+      </Typography>
+      <SamllBlogCard n={35} />
+      <SamllBlogCard n={35} />
     </Grid>
   );
 }

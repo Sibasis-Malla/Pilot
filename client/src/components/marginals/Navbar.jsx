@@ -1,6 +1,6 @@
 import React,{useContext} from 'react';
 
-import { Typography, Button } from '@mui/material';
+import { Typography, Button, Container } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
 import { Add, WindowRounded } from '@mui/icons-material';
@@ -88,7 +88,6 @@ const useStyles = makeStyles((theme) => ({
   },
   logoContainer: {
     textDecoration: 'none',
-    marginLeft: '10%',
   },
   logo: {
     color: '#fff',
@@ -97,7 +96,6 @@ const useStyles = makeStyles((theme) => ({
   tabsContainer: {
     display: 'flex',
     justifyContent: 'center',
-    marginRight: '10%',
     alignItems: 'center',
     [theme.breakpoints.down('xs')]: {
       display: 'none',
