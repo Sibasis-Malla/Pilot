@@ -4,7 +4,27 @@ import { Editor } from 'react-draft-wysiwyg';
 import { convertToHTML } from 'draft-convert';
 import DOMPurify from 'dompurify';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, TextField, Typography, styled } from '@mui/material';
+
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: '#7f5af0',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#7f5af0',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#7f5af0',
+    },
+    '&:hover fieldset': {
+      borderColor: '#7f5af0',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#7f5af0',
+    },
+  },
+});
 
 const CreateArticle = () => {
   const [editorState, setEditorState] = useState(() =>
@@ -32,14 +52,25 @@ const CreateArticle = () => {
 
   return (
     <div className="App">
-      <Typography variant="h4" sx={{ my: 5 }} fontWeight={700} gutterBottom>
+      <Typography
+        variant="h4"
+        sx={{ my: 5, color: ' #fffffe' }}
+        fontWeight={700}
+        gutterBottom
+      >
         Drop your thoughts
       </Typography>
-      <TextField
+      <CssTextField
         sx={{ mb: 3 }}
         autoComplete="title"
         name="titlr"
         required
+        InputLabelProps={{
+          style: { color: ' #fffffe' },
+        }}
+        InputProps={{
+          style: { color: '#fffffe' },
+        }}
         fullWidth
         id="title"
         label="Title"
@@ -56,7 +87,12 @@ const CreateArticle = () => {
         className="preview"
         dangerouslySetInnerHTML={createMarkup(convertedContent)}
       ></div>
-      <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+      <Button
+        type="submit"
+        fullWidth
+        variant="contained"
+        sx={{ mt: 3, mb: 2, backgroundColor: '#7f5af0' }}
+      >
         Publish
       </Button>
     </div>

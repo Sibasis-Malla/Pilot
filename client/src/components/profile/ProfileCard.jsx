@@ -30,10 +30,14 @@ const UserCard = () => {
                 alt="user photo"
               />
               <Stack direction="row" spacing={2} sx={{ mt: 2, width: '100%' }}>
-                <Button fullWidth variant="contained">
+                <Button
+                  fullWidth
+                  variant="contained"
+                  sx={{ backgroundColor: '#7f5af0' }}
+                >
                   Follow
                 </Button>
-                <Button fullWidth variant="outlined">
+                <Button fullWidth variant="outlined" sx={{ color: '#7f5af0' }}>
                   Subscribe
                 </Button>
               </Stack>
@@ -42,9 +46,15 @@ const UserCard = () => {
               <div className={classes.userData}>
                 <div className={classes.columnFlex}>
                   <div className={classes.userName}>
-                    <Typography variant="h4">Sambit Sankalp</Typography>
+                    <Typography variant="h4" sx={{ color: '#fffffe' }}>
+                      Sambit Sankalp
+                    </Typography>
                   </div>
-                  <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+                  <Stack
+                    direction="row"
+                    spacing={2}
+                    sx={{ mt: 2, color: '#fffffe' }}
+                  >
                     <Typography variant="h6">
                       <span style={{ fontWeight: 700 }}>100</span> followers
                     </Typography>
@@ -55,18 +65,22 @@ const UserCard = () => {
                       <span style={{ fontWeight: 700 }}>67</span> subscribers
                     </Typography>
                   </Stack>
-                  <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    sx={{ mt: 2, color: '#fffffe' }}
+                  >
                     <Typography variant="h6">
                       <span style={{ fontWeight: 700 }}>Genre</span> -{' '}
                     </Typography>
                     <Typography
                       variant="body1"
                       sx={{
-                        backgroundColor: '#000',
-                        color: '#fff',
+                        backgroundColor: '#7f5af0',
+                        color: '#fffffe',
                         py: 0.5,
                         px: 2,
-                        borderRadius: '20%',
+                        borderRadius: '10%',
                       }}
                     >
                       Tech
@@ -74,11 +88,11 @@ const UserCard = () => {
                     <Typography
                       variant="body1"
                       sx={{
-                        backgroundColor: '#000',
-                        color: '#fff',
+                        backgroundColor: '#7f5af0',
+                        color: '#fffffe',
                         py: 0.5,
                         px: 2,
-                        borderRadius: '20%',
+                        borderRadius: '10%',
                       }}
                     >
                       Design
@@ -86,17 +100,20 @@ const UserCard = () => {
                     <Typography
                       variant="body1"
                       sx={{
-                        backgroundColor: '#000',
-                        color: '#fff',
+                        backgroundColor: '#7f5af0',
+                        color: '#fffffe',
                         py: 0.5,
                         px: 2,
-                        borderRadius: '20%',
+                        borderRadius: '10%',
                       }}
                     >
                       Bussiness
                     </Typography>
                   </Stack>
-                  <Typography sx={{ mt: 3.5 }} variant="body1">
+                  <Typography
+                    sx={{ mt: 3.5, color: '#94a1b2' }}
+                    variant="body1"
+                  >
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Quos blanditiis tenetur unde suscipit, quam beatae rerum
                     inventore consectetur, neque doloribus, cupiditate numquam
@@ -112,18 +129,21 @@ const UserCard = () => {
                     spacing={1}
                     sx={{ mt: 4, justifyContent: 'flex-end' }}
                   >
-                    <IconButton aria-label="delete" color="primary">
+                    <IconButton aria-label="delete" sx={{ color: '#7f5af0' }}>
                       <Facebook />
                     </IconButton>
-                    <IconButton aria-label="delete" color="primary">
+                    <IconButton aria-label="delete" sx={{ color: '#7f5af0' }}>
                       <Instagram />
                     </IconButton>
-                    <IconButton color="primary" aria-label="add an alarm">
+                    <IconButton
+                      aria-label="add an alarm"
+                      sx={{ color: '#7f5af0' }}
+                    >
                       <Twitter />
                     </IconButton>
                     <IconButton
-                      color="primary"
                       aria-label="add to shopping cart"
+                      sx={{ color: '#7f5af0' }}
                     >
                       <Mail />
                     </IconButton>
@@ -149,6 +169,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     padding: '10px 0px',
     paddingTop: '20px',
+    backgroundColor: '#242629',
   },
   boldText: {
     fontFamily: 'Source Sans Pro',

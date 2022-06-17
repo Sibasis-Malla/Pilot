@@ -19,6 +19,26 @@ import { Contract } from "ethers";
 
 const Input = styled("input")({});
 
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: '#7f5af0',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#7f5af0',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#7f5af0',
+    },
+    '&:hover fieldset': {
+      borderColor: '#7f5af0',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#7f5af0',
+    },
+  },
+});
+
 export default function SignUp() {
   const [Coverimage, setCoverImage] = useState();
   const [Profileimage, setProfileImage] = useState();
@@ -121,6 +141,7 @@ export default function SignUp() {
       maxWidth="xs"
       sx={{
         marginBottom: 15,
+        color: '#fffffe',
       }}
     >
       <CssBaseline />
@@ -166,10 +187,16 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <CssTextField
                 required
                 fullWidth
                 multiline
+                InputLabelProps={{
+                  style: { color: ' #fffffe' },
+                }}
+                InputProps={{
+                  style: { color: '#fffffe' },
+                }}
                 minRows={5}
                 content="content"
                 label="Bio"
@@ -244,7 +271,7 @@ export default function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="#" variant="body2" sx={{ mt: 1, color: '#7f5af0' }}>
                 Already have an account? Sign in
               </Link>
             </Grid>

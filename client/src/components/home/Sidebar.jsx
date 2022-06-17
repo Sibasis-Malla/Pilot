@@ -34,11 +34,17 @@ const Sidebar = () => {
           justifyContent: 'center',
           alignItems: 'flex-start',
           textAlign: 'left',
+          backgroundColor: '#242629',
         }}
       >
         <Typography
           variant="h4"
-          sx={{ textAlign: 'left', fontSize: '2rem', fontWeight: 'bold' }}
+          sx={{
+            textAlign: 'left',
+            fontSize: '2rem',
+            fontWeight: 'bold',
+            color: '#fffffe',
+          }}
           gutterBottom
         >
           Popular Genres
@@ -56,13 +62,13 @@ const Sidebar = () => {
             <Typography
               variant="body1"
               sx={{
-                backgroundColor: '#000',
-                color: '#fff',
+                backgroundColor: '#7f5af0',
+                color: '#fffffe',
                 py: 0.5,
                 px: 2,
                 mx: 0.5,
                 my: 1,
-                borderRadius: '20%',
+                borderRadius: '10%',
               }}
             >
               {title}
@@ -74,7 +80,13 @@ const Sidebar = () => {
         variant="h6"
         fontWeight={700}
         gutterBottom
-        sx={{ textAlign: 'left', fontSize: '2rem', fontWeight: 'bold', mt: 8 }}
+        sx={{
+          textAlign: 'left',
+          fontSize: '2rem',
+          fontWeight: 'bold',
+          mt: 8,
+          color: '#fffffe',
+        }}
       >
         Subscribed
       </Typography>

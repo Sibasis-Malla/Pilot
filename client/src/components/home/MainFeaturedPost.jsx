@@ -47,15 +47,27 @@ function MainFeaturedPost() {
               variant="h3"
               color="inherit"
               gutterBottom
+              sx={{
+                color: '#fffffe',
+              }}
             >
               Title of a longer featured blog post
             </Typography>
-            <Typography variant="h5" color="inherit" paragraph>
+            <Typography
+              variant="h5"
+              sx={{ color: '#94a1b2' }}
+              color="inherit"
+              paragraph
+            >
               Multiple lines of text that form the lede, informing new readers
               quickly and efficiently about what's most interesting in this
               post's contents.
             </Typography>
-            <Link variant="subtitle1" href="#">
+            <Link
+              variant="subtitle1"
+              sx={{ color: '#7f5af0', textDecoration: 'none' }}
+              href="/article"
+            >
               Continue reading…
             </Link>
           </Box>

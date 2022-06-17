@@ -13,7 +13,12 @@ const Trendings = () => {
           <Grid item xs={12} md={8}>
             <Typography
               variant="h4"
-              sx={{ textAlign: 'left', fontSize: '2rem', fontWeight: 'bold' }}
+              sx={{
+                textAlign: 'left',
+                fontSize: '2rem',
+                fontWeight: 'bold',
+                color: '#fffffe',
+              }}
               gutterBottom
             >
               Trendings
@@ -35,6 +40,7 @@ const Trendings = () => {
             fontSize: '2rem',
             fontWeight: 'bold',
             mt: 3,
+            color: '#fffffe',
           }}
         >
           Recent Articles
