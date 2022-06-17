@@ -10,6 +10,11 @@ import ArticlePage from './pages/ArticlePage';
 import CreateArticle from './pages/CreateArticle';
 import Web3Context from './context';
 
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 function App() {
   const {checkIfWalletIsConnected,account} = useContext(Web3Context);
   window.ethereum&&window.ethereum.on('accountsChanged', function (accounts) {
