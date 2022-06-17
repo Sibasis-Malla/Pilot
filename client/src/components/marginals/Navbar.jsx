@@ -1,4 +1,4 @@
-import React,{useContext, useState} from 'react';
+import React, { useContext, useState } from 'react';
 
 import {
   Typography,
@@ -20,7 +20,7 @@ import RocketIcon from '@mui/icons-material/Rocket';
 
 function Navbar() {
   const classes = useStyles();
-  const { connectWallet, account,loginStat,login } = useContext(Web3Context);
+  const { connectWallet, account, loginStat, login } = useContext(Web3Context);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const settings = [
     { link: '/profile', text: 'Profile' },
@@ -37,64 +37,65 @@ function Navbar() {
   };
   return (
     <div className={classes.root}>
-    <Link to="/" className={classes.logoContainer}>
-      <Typography variant="h4" component="h4" className={classes.logo}>
-        Pilot
-      </Typography>
-    </Link>
-    <div className={classes.tabsContainer}>
-      <Link className={classes.tabLink} to="/profile">
-        <Typography className={classes.tab} variant="body1">
-          Profile Page
-        </Typography>
-      </Link>
-      {account.currentAccount != null ? (
-        <>
-        {!loginStat?(<Button
-          variant="contained"
-          style={{ backgroundColor: '#eebbc3', color: '#232946' }}
-          startIcon={<Add />}
-          onClick={()=>login(account.currentAccount)}
-        >
-          <Typography
-            className={classes.tab}
-            style={{ color: '#232946' }}
-            variant="body1"
-          >
-            Login to Lens
+      <Container
+        maxWidth="lg"
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+      >
+        <Link to="/" className={classes.logoContainer}>
+          <Typography variant="h4" component="h4" className={classes.logo}>
+            Pilot
           </Typography>
-        </Button>):
-        <Typography className={classes.tab} variant="body1">
-        Connected to Lens
-      </Typography>
-        }
-          
-        <Typography className={classes.tab} variant="body1">
-          Hey,{' '}
-          {`${String(account.currentAccount).slice(0, 5)}...${String(
-            account.currentAccount
-          ).slice(String(account.currentAccount).length - 5)}`}
-        </Typography>
-        </>
-      ) : (
-        <Button
-          variant="contained"
-          style={{ backgroundColor: '#eebbc3', color: '#232946' }}
-          startIcon={<Add />}
-          onClick={connectWallet}
-        >
-          <Typography
-            className={classes.tab}
-            style={{ color: '#232946' }}
-            variant="body1"
-          >
-            Connect to Wallet
-          </Typography>
-        </Button>
-      )}
+        </Link>
+        <div className={classes.tabsContainer}>
+          {account.currentAccount != null ? (
+            <>
+              {!loginStat ? (
+                <Button
+                  variant="contained"
+                  style={{ backgroundColor: '#eebbc3', color: '#232946' }}
+                  startIcon={<Add />}
+                  onClick={() => login(account.currentAccount)}
+                >
+                  <Typography
+                    className={classes.tab}
+                    style={{ color: '#232946' }}
+                    variant="body1"
+                  >
+                    Login to Lens
+                  </Typography>
+                </Button>
+              ) : (
+                <Typography className={classes.tab} variant="body1">
+                  Connected to Lens
+                </Typography>
+              )}
+
+              <Typography className={classes.tab} variant="body1">
+                Hey,{' '}
+                {`${String(account.currentAccount).slice(0, 5)}...${String(
+                  account.currentAccount
+                ).slice(String(account.currentAccount).length - 5)}`}
+              </Typography>
+            </>
+          ) : (
+            <Button
+              variant="contained"
+              style={{ backgroundColor: '#eebbc3', color: '#232946' }}
+              startIcon={<Add />}
+              onClick={connectWallet}
+            >
+              <Typography
+                style={{ color: '#232946' }}
+                variant="body1"
+              >
+                Connect to Wallet
+              </Typography>
+            </Button>
+          )}
+        </div>
+      </Container>
     </div>
-  </div>
-);
+  );
 }
 
 export default Navbar;
