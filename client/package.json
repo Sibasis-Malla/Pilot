@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.6.8",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
@@ -11,12 +12,19 @@
     "dompurify": "^2.3.8",
     "draft-convert": "^2.1.12",
     "draft-js": "^0.11.7",
+    "ethers": "^5.6.8",
+    "graphql": "^16.5.0",
     "immutable": "^4.0.0",
+    "ipfs-http-client": "^56.0.1",
+    "jwt-decode": "^3.1.2",
+    "omit-deep": "^0.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-draft-wysiwyg": "^1.14.7",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "uuid": "^8.3.2",
+    "web3": "^1.7.3"
   },
   "scripts": {
     "start": "react-scripts start",

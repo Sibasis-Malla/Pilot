@@ -3,24 +3,26 @@ pragma solidity  ^ 0.8.0 ;
 //contract to store creators limited to pilot;
 contract Pilot{
 struct Creator{
-    address creatorAddress;   
+    address creatorAddress;
+    string profileId;   
     bool isActive;
 }
 
 uint256 public creatorCount;
-mapping(uint256=>Creator) public creatorList;
+mapping(address=>Creator) public creatorList;
 address[] public creators ;
-function createAccount () public{
-    creatorList[creatorCount].creatorAddress = msg.sender;
-    creatorList[creatorCount].isActive = true;
+function createAccount (string memory Id) public{
+    creatorList[msg.sender].creatorAddress = msg.sender;
+    creatorList[msg.sender].profileId  = Id;
+    creatorList[msg.sender].isActive = true;
     creators.push(msg.sender);
      creatorCount++;
 }
-function deleteAccount (uint id)public{
-    creatorList[id].isActive = false;
+function deleteAccount ()public{
+    creatorList[msg.sender].isActive = false;
 }
-function getCreator(uint id)public view returns(Creator memory){
-    return creatorList[id];
+function getCreatorId(address id)public view returns(string memory){
+    return creatorList[id].profileId;
 }
 
 }

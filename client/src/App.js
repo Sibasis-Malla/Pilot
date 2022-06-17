@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext,useEffect } from 'react';
 import './App.css';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -8,8 +8,20 @@ import SignUp from './components/forms/SignUp';
 import ProfilePage from './pages/ProfilePage';
 import ArticlePage from './pages/ArticlePage';
 import CreateArticle from './pages/CreateArticle';
+import Web3Context from './context';
 
 function App() {
+  const {checkIfWalletIsConnected,account} = useContext(Web3Context);
+  window.ethereum&&window.ethereum.on('accountsChanged', function (accounts) {
+   window.location.reload()
+  });
+ 
+  useEffect(() => {
+    checkIfWalletIsConnected();
+
+  }, []);
+   
+
   return (
     <Router>
       <Marginals>

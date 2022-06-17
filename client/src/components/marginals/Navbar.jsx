@@ -1,38 +1,75 @@
-import React from 'react';
+import React,{useContext} from 'react';
 
 import { Typography, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
+import { Add, WindowRounded } from '@mui/icons-material';
+import Web3Context from '../../context';
 
 function Navbar() {
   const classes = useStyles();
+  const { connectWallet, account,loginStat,login } = useContext(Web3Context);
 
   return (
     <div className={classes.root}>
-      <Link to="/" className={classes.logoContainer}>
-        <Typography variant="h4" component="h4" className={classes.logo}>
-          Pilot
+    <Link to="/" className={classes.logoContainer}>
+      <Typography variant="h4" component="h4" className={classes.logo}>
+        Pilot
+      </Typography>
+    </Link>
+    <div className={classes.tabsContainer}>
+      <Link className={classes.tabLink} to="/profile">
+        <Typography className={classes.tab} variant="body1">
+          Profile Page
         </Typography>
       </Link>
-      <div className={classes.tabsContainer}>
-        <Link className={classes.tabLink} to="/profile">
-          <Typography className={classes.tab} variant="body1">
-            ProfilePage
-          </Typography>
-        </Link>
-        <Link className={classes.tabLink} to="/signup">
-          <Button
-            variant="contained"
-            style={{ backgroundColor: '#eebbc3', color: '#232946' }}
+      {account.currentAccount != null ? (
+        <>
+        {!loginStat?(<Button
+          variant="contained"
+          style={{ backgroundColor: '#eebbc3', color: '#232946' }}
+          startIcon={<Add />}
+          onClick={()=>login(account.currentAccount)}
+        >
+          <Typography
+            className={classes.tab}
+            style={{ color: '#232946' }}
+            variant="body1"
           >
-            <Typography style={{ color: '#232946' }} variant="body1">
-              Sign Up
-            </Typography>
-          </Button>
-        </Link>
-      </div>
+            Login to Lens
+          </Typography>
+        </Button>):
+        <Typography className={classes.tab} variant="body1">
+        Connected to Lens
+      </Typography>
+        }
+          
+        <Typography className={classes.tab} variant="body1">
+          Hey,{' '}
+          {`${String(account.currentAccount).slice(0, 5)}...${String(
+            account.currentAccount
+          ).slice(String(account.currentAccount).length - 5)}`}
+        </Typography>
+        </>
+      ) : (
+        <Button
+          variant="contained"
+          style={{ backgroundColor: '#eebbc3', color: '#232946' }}
+          startIcon={<Add />}
+          onClick={connectWallet}
+        >
+          <Typography
+            className={classes.tab}
+            style={{ color: '#232946' }}
+            variant="body1"
+          >
+            Connect to Wallet
+          </Typography>
+        </Button>
+      )}
     </div>
-  );
+  </div>
+);
 }
 
 export default Navbar;

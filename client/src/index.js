@@ -4,14 +4,18 @@ import './index.css';
 import App from './App';
 import { ThemeProvider } from '@mui/styles';
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import Web3Provider from './context/Web3provider';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
+  <Web3Provider>
+    <ThemeProvider theme={theme}>
     <App />
-  </ThemeProvider>,
+  </ThemeProvider>
+  </Web3Provider>,
+  
   document.getElementById('root')
 );
 
