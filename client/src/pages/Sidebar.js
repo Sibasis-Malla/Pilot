@@ -37,7 +37,7 @@ function Sidebar() {
             marginTop: 5,
           }}
           src="https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png"
-          alt="user photo"
+          alt="user"
         />
         <Link style={{ textDecoration: 'none' }} to="/profile">
           <Typography

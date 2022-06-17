@@ -13,8 +13,6 @@ import {
 import makeStyles from '@mui/styles/makeStyles';
 import { Facebook, Instagram, Mail, Twitter } from '@mui/icons-material';
 
-import { Link } from 'react-router-dom';
-
 const UserCard = () => {
   const classes = useStyles();
 
@@ -27,7 +25,7 @@ const UserCard = () => {
               <img
                 className={classes.profileImage}
                 src="https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png"
-                alt="user photo"
+                alt="Sambit Sankalp"
               />
               <Stack direction="row" spacing={2} sx={{ mt: 2, width: '100%' }}>
                 <Button
