@@ -19,26 +19,6 @@ import Web3Context from "../../context";
 
 const Input = styled('input')({});
 
-const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: '#7f5af0',
-  },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: '#7f5af0',
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: '#7f5af0',
-    },
-    '&:hover fieldset': {
-      borderColor: '#7f5af0',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: '#7f5af0',
-    },
-  },
-});
-
 export default function SignUp() {
   const [Coverimage, setCoverImage] = useState();
   const [Profileimage, setProfileImage] = useState();
