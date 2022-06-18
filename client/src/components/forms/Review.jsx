@@ -1,22 +1,20 @@
-import React, { useState,useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Typography, Input, Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import {  getProfiles } from '../../Lens/query';
+import { getProfiles } from '../../Lens/query';
 import { setProfileImageUriNormal } from '../../Lens/utils/setProfilePic';
 import Web3Context from '../../context';
 
 export default function Review() {
   const [Profileimage, setProfileImage] = useState();
   const [ProfileimageURI, setProfileImageURI] = useState();
-  const {profileId,account} = useContext(Web3Context)
- 
+  const { profileId, account } = useContext(Web3Context);
 
   const handleProfileImage = (event) => {
     setProfileImage(event.target.files[0]);
   };
 
   const UploadImage = async () => {
-
     const data = new FormData();
     data.append('file', Profileimage);
     data.append('upload_preset', 'mystiq');
@@ -27,8 +25,8 @@ export default function Review() {
     })
       .then((resp) => resp.json())
       .then((data) => {
-       setProfileImageURI(data.url);
-        console.log('Image Uploaded')
+        setProfileImageURI(data.url);
+        console.log('Image Uploaded');
         alert('Image Uploaded');
       })
       .catch((err) => console.log(err));
@@ -37,8 +35,8 @@ export default function Review() {
   const handleProfilePic = async () => {
     const res = await setProfileImageUriNormal(profileId, ProfileimageURI);
     console.log(res);
-    alert('profile pic Uploaded')
-    window.location.href = `/`
+    alert('profile pic Uploaded');
+    window.location.href = `/`;
   };
   const getProfile = async () => {
     const a = {
@@ -58,23 +56,32 @@ export default function Review() {
         Profile Picture
       </Typography>
       <Grid item xs={12}>
-        <Input
-          accept="image/*"
-          id="contained-button-file"
-          multiple
-          type="file"
-          onChange={handleProfileImage}
-          name="image"
-        />
-        <Button
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2, backgroundColor: '#7f5af0' }}
-          component="span"
-          onClick={() => UploadImage()}
-        >
-          Upload your Profile Pic
-        </Button>
+        <Grid container spacing={2}>
+          <Grid item xs={8}>
+            <div className="input-group mb-3">
+              <input
+                type="file"
+                className="form-control"
+                id="inputGroupFile02"
+                onChange={handleProfileImage}
+              />
+              <label className="input-group-text" for="inputGroupFile02">
+                Upload
+              </label>
+            </div>
+          </Grid>
+          <Grid item xs={4}>
+            <Button
+              fullWidth
+              variant="contained"
+              component="span"
+              sx={{ mb: 3, backgroundColor: '#7f5af0' }}
+              onClick={() => UploadImage()}
+            >
+              Upload Image
+            </Button>
+          </Grid>
+        </Grid>
       </Grid>
       <Button
         fullWidth
