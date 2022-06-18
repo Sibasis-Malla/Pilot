@@ -11,6 +11,7 @@ import {
   Button,
   IconButton,
   Stack,
+  Container,
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Facebook, Instagram, Mail, Twitter } from '@mui/icons-material';
@@ -34,153 +35,170 @@ const UserCard = () => {
       ? res2.data.profiles.items[0]
       : null;
     setData(res);
-    console.log();
+    console.log(res.coverPicture.original.url);
   };
-
+  const img = 'https://source.unsplash.com/random';
   return (
-    <div className={classes.wrapper}>
-      <Card className={classes.card}>
-        <CardContent>
-          <Grid container>
-            <Grid item md={4} sm={12} className={classes.gridPadding}>
-              {data && (
-                <img
-                  className={classes.profileImage}
-                  src={`${data.picture.original.url}`}
-                  alt="Sambit Sankalp"
-                />
-              )}
-              <Stack direction="row" spacing={2} sx={{ mt: 2, width: '80%' }}>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  sx={{ backgroundColor: '#7f5af0' }}
-                >
-                  Follow
-                </Button>
-                {/* <Button fullWidth variant="outlined" sx={{ color: '#7f5af0' }}>
+    <div
+      className={classes.wrapper}
+      style={{
+        position: 'relative',
+        backgroundColor: 'grey.800',
+        color: '#fff',
+        textAlign: 'left',
+        // filter: 'blur(8px)',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundImage: `linear-gradient(to bottom, transparent, #232323), url(${
+          data ? data.coverPicture.original.url : img
+        })`,
+      }}
+    >
+      <Container maxWidth="lg" sx={{ my: 5, mt: 7 }}>
+        <Card className={classes.card}>
+          <CardContent>
+            <Grid container>
+              <Grid item md={4} sm={12} className={classes.gridPadding}>
+                {data && (
+                  <img
+                    className={classes.profileImage}
+                    src={`${data.picture.original.url}`}
+                    alt="Sambit Sankalp"
+                  />
+                )}
+                <Stack direction="row" spacing={2} sx={{ mt: 2, width: '80%' }}>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    sx={{ backgroundColor: '#7f5af0' }}
+                  >
+                    Follow
+                  </Button>
+                  {/* <Button fullWidth variant="outlined" sx={{ color: '#7f5af0' }}>
                   Subscribe
                 </Button> */}
-              </Stack>
-            </Grid>
-            <Grid item md={8} sm={12} className={classes.gridPadding}>
-              <div className={classes.userData}>
-                <div className={classes.columnFlex}>
-                  <div className={classes.userName}>
-                    {data && (
-                      <Typography variant="h4" sx={{ color: '#fffffe' }}>
-                        {data.name}
+                </Stack>
+              </Grid>
+              <Grid item md={8} sm={12} className={classes.gridPadding}>
+                <div className={classes.userData}>
+                  <div className={classes.columnFlex}>
+                    <div className={classes.userName}>
+                      {data && (
+                        <Typography variant="h4" sx={{ color: '#fffffe' }}>
+                          {data.name}
+                        </Typography>
+                      )}
+                      <Typography variant="h6" sx={{ color: '#bababa' }}>
+                        {data && <span>{data.handle}</span>}
                       </Typography>
-                    )}
-                    <Typography variant="h6" sx={{ color: '#bababa' }}>
-                      {data && <span>{data.handle}</span>}
-                    </Typography>
-                  </div>
-                  <Stack
-                    direction="row"
-                    spacing={2}
-                    sx={{ mt: 2, color: '#fffffe' }}
-                  >
-                    <Typography variant="h6">
-                      {data && (
-                        <span style={{ fontWeight: 700 }}>
-                          {data.stats.totalFollowers}
-                        </span>
-                      )}{' '}
-                      Followers
-                    </Typography>
-                    <Typography variant="h6">
-                      {data && (
-                        <span style={{ fontWeight: 700 }}>
-                          {data.stats.totalPosts}
-                        </span>
-                      )}{' '}
-                      posts
-                    </Typography>
-                    {/* <Typography variant="h6">
+                    </div>
+                    <Stack
+                      direction="row"
+                      spacing={2}
+                      sx={{ mt: 2, color: '#fffffe' }}
+                    >
+                      <Typography variant="h6">
+                        {data && (
+                          <span style={{ fontWeight: 700 }}>
+                            {data.stats.totalFollowers}
+                          </span>
+                        )}{' '}
+                        Followers
+                      </Typography>
+                      <Typography variant="h6">
+                        {data && (
+                          <span style={{ fontWeight: 700 }}>
+                            {data.stats.totalPosts}
+                          </span>
+                        )}{' '}
+                        posts
+                      </Typography>
+                      {/* <Typography variant="h6">
                       <span style={{ fontWeight: 700 }}>67</span> subscribers
                     </Typography> */}
-                  </Stack>
-                  <Stack
-                    direction="row"
-                    spacing={1}
-                    sx={{ mt: 2, color: '#fffffe' }}
-                  >
-                    <Typography variant="h6">
-                      <span style={{ fontWeight: 700 }}>Genre</span> -{' '}
-                    </Typography>
+                    </Stack>
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      sx={{ mt: 2, color: '#fffffe' }}
+                    >
+                      <Typography variant="h6">
+                        <span style={{ fontWeight: 700 }}>Genre</span> -{' '}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          backgroundColor: '#7f5af0',
+                          color: '#fffffe',
+                          py: 0.5,
+                          px: 2,
+                          borderRadius: '10%',
+                        }}
+                      >
+                        Tech
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          backgroundColor: '#7f5af0',
+                          color: '#fffffe',
+                          py: 0.5,
+                          px: 2,
+                          borderRadius: '10%',
+                        }}
+                      >
+                        Design
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          backgroundColor: '#7f5af0',
+                          color: '#fffffe',
+                          py: 0.5,
+                          px: 2,
+                          borderRadius: '10%',
+                        }}
+                      >
+                        Bussiness
+                      </Typography>
+                    </Stack>
                     <Typography
+                      sx={{ mt: 3.5, color: '#94a1b2' }}
                       variant="body1"
+                    >
+                      {data && <>{data.bio}</>}
+                    </Typography>
+                    <Stack
+                      direction="row"
+                      spacing={1}
                       sx={{
-                        backgroundColor: '#7f5af0',
-                        color: '#fffffe',
-                        py: 0.5,
-                        px: 2,
-                        borderRadius: '10%',
+                        mt: 4,
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        alignItems: 'flex-end',
                       }}
                     >
-                      Tech
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        backgroundColor: '#7f5af0',
-                        color: '#fffffe',
-                        py: 0.5,
-                        px: 2,
-                        borderRadius: '10%',
-                      }}
-                    >
-                      Design
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        backgroundColor: '#7f5af0',
-                        color: '#fffffe',
-                        py: 0.5,
-                        px: 2,
-                        borderRadius: '10%',
-                      }}
-                    >
-                      Bussiness
-                    </Typography>
-                  </Stack>
-                  <Typography
-                    sx={{ mt: 3.5, color: '#94a1b2' }}
-                    variant="body1"
-                  >
-                    {data && <>{data.bio}</>}
-                  </Typography>
-                  <Stack
-                    direction="row"
-                    spacing={1}
-                    sx={{
-                      mt: 4,
-                      display: 'flex',
-                      justifyContent: 'flex-end',
-                      alignItems: 'flex-end',
-                    }}
-                  >
-                    <IconButton sx={{ color: '#7f5af0' }}>
-                      <Facebook />
-                    </IconButton>
-                    <IconButton sx={{ color: '#7f5af0' }}>
-                      <Instagram />
-                    </IconButton>
-                    <IconButton sx={{ color: '#7f5af0' }}>
-                      <Twitter />
-                    </IconButton>
-                    <IconButton sx={{ color: '#7f5af0' }}>
-                      <Mail />
-                    </IconButton>
-                  </Stack>
+                      <IconButton sx={{ color: '#7f5af0' }}>
+                        <Facebook />
+                      </IconButton>
+                      <IconButton sx={{ color: '#7f5af0' }}>
+                        <Instagram />
+                      </IconButton>
+                      <IconButton sx={{ color: '#7f5af0' }}>
+                        <Twitter />
+                      </IconButton>
+                      <IconButton sx={{ color: '#7f5af0' }}>
+                        <Mail />
+                      </IconButton>
+                    </Stack>
+                  </div>
                 </div>
-              </div>
+              </Grid>
             </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </Container>
     </div>
   );
 };
@@ -192,11 +210,14 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '550px',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: '50px',
   },
   card: {
     padding: '10px 0px',
     paddingTop: '20px',
     backgroundColor: '#242629',
+    zIndex: 10000,
+    filter: 'none',
   },
   boldText: {
     fontFamily: 'Source Sans Pro',
