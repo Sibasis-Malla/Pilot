@@ -34,7 +34,7 @@ function Navbar() {
     };
     const res2 = await getProfiles(a);
     console.log(res2);
-    const res = res2.data.profiles.lenght ? res2.data.profiles.items[0] : null;
+    const res = res2.data.profiles.items.length ? res2.data.profiles.items[0] : null;
     setData(res);
   };
   

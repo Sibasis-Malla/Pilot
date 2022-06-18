@@ -30,7 +30,7 @@ const UserCard = () => {
     };
     const res2 = await getProfiles(a);
     console.log(res2);
-    const res = res2.data.profiles.items[0];
+    const res = res2.data.profiles.items[0].name?res2.data.profiles.items[0]:null;
     setData(res);
     console.log();
   };
