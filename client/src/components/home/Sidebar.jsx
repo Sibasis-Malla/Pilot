@@ -3,6 +3,7 @@ import {
   Typography,
   Paper,
   Stack,
+  Avatar
 } from '@mui/material';
 import SmallBlogCard from '../profile/SmallBlogCard';
 
@@ -13,11 +14,6 @@ const Sidebar = () => {
     { title: 'Culture', url: '#' },
     { title: 'Business', url: '#' },
     { title: 'Politics', url: '#' },
-    { title: 'Opinion', url: '#' },
-    { title: 'Science', url: '#' },
-    { title: 'Health', url: '#' },
-    { title: 'Style', url: '#' },
-    { title: 'Travel', url: '#' },
   ];
   return (
     <>
@@ -41,13 +37,14 @@ const Sidebar = () => {
             fontSize: '2rem',
             fontWeight: 'bold',
             color: '#fffffe',
+
           }}
           gutterBottom
         >
-          Popular Genres
+          Popular Pilots
         </Typography>
         <Stack
-          direction="row"
+          direction="column"
           sx={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -56,20 +53,27 @@ const Sidebar = () => {
           }}
         >
           {sections.map(({ title, url }) => (
-            <Typography
-              variant="body1"
-              sx={{
-                backgroundColor: '#7f5af0',
-                color: '#fffffe',
-                py: 0.5,
-                px: 2,
-                mx: 0.5,
-                my: 1,
-                borderRadius: '10%',
-              }}
-            >
-              {title}
-            </Typography>
+            // <Typography
+            //   variant="body1"
+            //   sx={{
+            //     backgroundColor: '#7f5af0',
+            //     color: '#fffffe',
+            //     py: 0.5,
+            //     px: 2,
+            //     mx: 0.5,
+            //     my: 1,
+            //     borderRadius: '10%',
+            //   }}
+            // >
+            //   {title}
+            // </Typography>
+            
+                <Avatar
+                >
+              </Avatar>
+            
+            
+            
           ))}
         </Stack>
       </Paper>
