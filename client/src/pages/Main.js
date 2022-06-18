@@ -26,6 +26,10 @@ function Main(props) {
       >
         {title}
       </Typography>
+      <img
+        style={{ width: '100%' }}
+        src="https://res.cloudinary.com/sambitsankalp/image/upload/v1655063242/hackathons/creative-workplace-with-computer-monitor-empty-no-people-cabinet-vector-id1165699436_qdf5yf.jpg"
+      />
       <Stack
         direction="row"
         sx={{
