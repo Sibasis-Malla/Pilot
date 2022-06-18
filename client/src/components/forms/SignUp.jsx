@@ -39,18 +39,16 @@ const CssTextField = styled(TextField)({
 const Input = styled('input')({});
 
 export default function SignUp() {
-  const [Coverimage, setCoverImage] = useState();
+
   const [Profileimage, setProfileImage] = useState();
-  const [CoverimageURI, setCoverImageURI] = useState();
+ 
   const [ProfileimageURI, setProfileImageURI] = useState();
   const [handleName, setHandleName] = useState('');
   const [name, setName] = useState('');
   const [bio, setBio] = useState('');
   const [profileId, setProfileId] = useState('');
   const { pilotContract, account } = useContext(Web3Context);
-  const handleCoverImage = (event) => {
-    setCoverImage(event.target.files[0]);
-  };
+ 
   const handleProfileImage = (event) => {
     setProfileImage(event.target.files[0]);
   };
@@ -74,7 +72,7 @@ export default function SignUp() {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        !ind ? setCoverImageURI(data.url) : setProfileImageURI(data.url);
+       setCoverImageURI(data.url) 
         console.log('Image Uploaded');
       })
       .catch((err) => console.log(err));

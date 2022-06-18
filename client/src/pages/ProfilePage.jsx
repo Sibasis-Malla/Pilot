@@ -8,7 +8,7 @@ const ProfilePage = () => {
   return (
     <div>
       <UserCard />
-      <Typography
+      {/* <Typography
         variant="h4"
         sx={{ mt: 10, fontWeight: 700, color: '#fffffe' }}
       >
@@ -19,7 +19,7 @@ const ProfilePage = () => {
         <BlogCard />
         <BlogCard />
         <BlogCard />
-      </Grid>
+      </Grid> */}
       <Typography
         variant="h4"
         sx={{ mt: 10, fontWeight: 700, color: '#fffffe' }}
