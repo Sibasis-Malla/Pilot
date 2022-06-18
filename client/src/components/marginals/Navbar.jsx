@@ -11,6 +11,7 @@ import {
   IconButton,
   Avatar,
   Stack,
+  Chip,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
@@ -34,36 +35,22 @@ function Navbar() {
     };
     const res2 = await getProfiles(a);
     console.log(res2);
-    const res = res2.data.profiles.items.length ? res2.data.profiles.items[0] : null;
+    const res = res2.data.profiles.items.length
+      ? res2.data.profiles.items[0]
+      : null;
     setData(res);
   };
-  
+
   useEffect(() => {
     profileId && getProfile();
   }, [profileId, getProfile]);
 
-  
   const menu = profileId
     ? [
-        {
-          link: '/',
-          text: `Hey, ${String(account.currentAccount).slice(0, 5)}...${String(
-            account.currentAccount
-          ).slice(String(account.currentAccount).length - 5)}`,
-        },
-
         { link: `/${profileId}/profile`, text: 'Profile' },
         { link: `/${profileId}/article/create`, text: 'Write' },
       ]
-    : [
-        {
-          link: '/',
-          text: `Hey, ${String(account.currentAccount).slice(0, 5)}...${String(
-            account.currentAccount
-          ).slice(String(account.currentAccount).length - 5)}`,
-        },
-        { link: `/signup`, text: 'Signup' },
-      ];
+    : [{ link: `/signup`, text: 'Signup' }];
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -120,14 +107,39 @@ function Navbar() {
               )}
               <Box sx={{ flexGrow: 0, ml: 1 }}>
                 <Tooltip title="Open menu">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <IconButton
+                    onClick={handleOpenUserMenu}
+                    sx={{ p: 0, color: '#fffffe' }}
+                  >
                     {data ? (
-                      <Avatar
-                        alt="profile image"
-                        src={`${data.picture.original.url}`}
+                      <Chip
+                        avatar={
+                          <Avatar
+                            alt="profile"
+                            src={`${data.picture.original.url}`}
+                          />
+                        }
+                        sx={{ p: 0, color: '#fffffe' }}
+                        label={`${String(account.currentAccount).slice(
+                          0,
+                          5
+                        )}...${String(account.currentAccount).slice(
+                          String(account.currentAccount).length - 5
+                        )}`}
+                        variant="outlined"
                       />
                     ) : (
-                      <Avatar />
+                      <Chip
+                        avatar={<Avatar />}
+                        sx={{ p: 0, color: '#fffffe' }}
+                        label={`${String(account.currentAccount).slice(
+                          0,
+                          5
+                        )}...${String(account.currentAccount).slice(
+                          String(account.currentAccount).length - 5
+                        )}`}
+                        variant="outlined"
+                      />
                     )}
                   </IconButton>
                 </Tooltip>
