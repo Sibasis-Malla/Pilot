@@ -1,4 +1,4 @@
-import React, { useContext, useState,useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import {
   Typography,
@@ -10,90 +10,60 @@ import {
   Tooltip,
   IconButton,
   Avatar,
-  styled,
   Stack,
-  Badge,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
 import { Add } from '@mui/icons-material';
 import Web3Context from '../../context';
 import RocketIcon from '@mui/icons-material/Rocket';
-import { getProfiles} from "../../Lens/query";
-
-const StyledBadge = styled(Badge)(({ theme }) => ({
-  '& .MuiBadge-badge': {
-    backgroundColor: '#44b700',
-    color: '#44b700',
-    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-    '&::after': {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      borderRadius: '50%',
-      animation: 'ripple 1.2s infinite ease-in-out',
-      border: '1px solid currentColor',
-      content: '""',
-    },
-  },
-  '@keyframes ripple': {
-    '0%': {
-      transform: 'scale(.8)',
-      opacity: 1,
-    },
-    '100%': {
-      transform: 'scale(2.4)',
-      opacity: 0,
-    },
-  },
-}));
+import { getProfiles } from '../../Lens/query';
 
 function Navbar() {
   const classes = useStyles();
-  const [data,setData] = useState("")
-  const { connectWallet, account, loginStat, login,profileId } = useContext(Web3Context);
+  const [data, setData] = useState('');
+  const { connectWallet, account, loginStat, login, profileId } =
+    useContext(Web3Context);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  useEffect(() => {
-   profileId && getProfile()   
-  }, [profileId])
-  
+
   const getProfile = async () => {
-    //console.log(profileId)
+    console.log(profileId);
     const a = {
       profileIds: [profileId],
       limit: 50,
     };
     const res2 = await getProfiles(a);
     console.log(res2);
-     const res =
-       res2.data.profiles.items.length?res2.data.profiles.items[0]:null
-       setData(res)
-      
-      
-    
+    const res = res2.data.profiles.lenght ? res2.data.profiles.items[0] : null;
+    setData(res);
   };
-  const menu =profileId? [
-    {
-      link: '/',
-      text: `Hey, ${String(account.currentAccount).slice(0, 5)}...${String(
-        account.currentAccount
-      ).slice(String(account.currentAccount).length - 5)}`,
-    },
-   
-    { link:`/${profileId}/profile`, text: 'Profile' },
-    { link: `/${profileId}/article/create`, text: 'Write' },
-    
-  ]:[
-    {
-      link: '/',
-      text: `Hey, ${String(account.currentAccount).slice(0, 5)}...${String(
-        account.currentAccount
-      ).slice(String(account.currentAccount).length - 5)}`,
-    },
-    { link: `/signup`, text: 'Signup' },
-  ]
+  
+  useEffect(() => {
+    profileId && getProfile();
+  }, [profileId, getProfile]);
+
+  
+  const menu = profileId
+    ? [
+        {
+          link: '/',
+          text: `Hey, ${String(account.currentAccount).slice(0, 5)}...${String(
+            account.currentAccount
+          ).slice(String(account.currentAccount).length - 5)}`,
+        },
+
+        { link: `/${profileId}/profile`, text: 'Profile' },
+        { link: `/${profileId}/article/create`, text: 'Write' },
+      ]
+    : [
+        {
+          link: '/',
+          text: `Hey, ${String(account.currentAccount).slice(0, 5)}...${String(
+            account.currentAccount
+          ).slice(String(account.currentAccount).length - 5)}`,
+        },
+        { link: `/signup`, text: 'Signup' },
+      ];
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -102,11 +72,6 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-
-
-  
-
 
   return (
     <div className={classes.root}>
@@ -148,7 +113,7 @@ function Navbar() {
                   }}
                 >
                   <div className={classes.ripple} />
-                  <Typography className={classes.tab}  variant="body1">
+                  <Typography className={classes.tab} variant="body1">
                     Connected to Lens
                   </Typography>
                 </Stack>
@@ -156,11 +121,14 @@ function Navbar() {
               <Box sx={{ flexGrow: 0, ml: 1 }}>
                 <Tooltip title="Open menu">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    {data ?( <Avatar
-                      alt="profile image"
-                      src={`${data.picture.original.url}`}
-                    />):<Avatar/>
-                    }
+                    {data ? (
+                      <Avatar
+                        alt="profile image"
+                        src={`${data.picture.original.url}`}
+                      />
+                    ) : (
+                      <Avatar />
+                    )}
                   </IconButton>
                 </Tooltip>
                 <Menu
