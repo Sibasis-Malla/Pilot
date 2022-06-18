@@ -1,5 +1,5 @@
-import React,{useEffect,useState} from 'react';
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { getProfiles } from '../../Lens/query';
 
 // Libraries
@@ -15,15 +15,14 @@ import {
 import makeStyles from '@mui/styles/makeStyles';
 import { Facebook, Instagram, Mail, Twitter } from '@mui/icons-material';
 
-
 const UserCard = () => {
-  const [data,setData] = useState("")
+  const [data, setData] = useState('');
   const classes = useStyles();
-  const{id} = useParams();
+  const { id } = useParams();
   useEffect(() => {
-   getProfile()   
-  }, [])
-  
+    getProfile();
+  }, []);
+
   const getProfile = async () => {
     const a = {
       profileIds: [`${id}`],
@@ -31,14 +30,10 @@ const UserCard = () => {
     };
     const res2 = await getProfiles(a);
     console.log(res2);
-     const res =
-       res2.data.profiles.items[0].name?res2.data.profiles.items[0]:null
-       setData(res)
-       console.log()
-      
-    
+    const res = res2.data.profiles.items[0];
+    setData(res);
+    console.log();
   };
-
 
   return (
     <div className={classes.wrapper}>
@@ -46,12 +41,14 @@ const UserCard = () => {
         <CardContent>
           <Grid container>
             <Grid item md={4} sm={12} className={classes.gridPadding}>
-              {data && <img
-                className={classes.profileImage}
-                src={`${data.picture.original.url}`}
-                alt="Sambit Sankalp"
-              />}
-              <Stack direction="row" spacing={2} sx={{ mt: 2, width: '100%' }}>
+              {data && (
+                <img
+                  className={classes.profileImage}
+                  src={`${data.picture.original.url}`}
+                  alt="Sambit Sankalp"
+                />
+              )}
+              <Stack direction="row" spacing={2} sx={{ mt: 2, width: '80%' }}>
                 <Button
                   fullWidth
                   variant="contained"
@@ -68,11 +65,13 @@ const UserCard = () => {
               <div className={classes.userData}>
                 <div className={classes.columnFlex}>
                   <div className={classes.userName}>
-                  {data && <Typography variant="h4" sx={{ color: '#fffffe' }}>
-                    {data.name}
-                  </Typography>}
-                  <Typography variant="h6">
-                    {data && <span style={{ fontWeight: 700 }}>{data.handle}</span>} 
+                    {data && (
+                      <Typography variant="h4" sx={{ color: '#fffffe' }}>
+                        {data.name}
+                      </Typography>
+                    )}
+                    <Typography variant="h6" sx={{ color: '#bababa' }}>
+                      {data && <span>{data.handle}</span>}
                     </Typography>
                   </div>
                   <Stack
@@ -81,10 +80,20 @@ const UserCard = () => {
                     sx={{ mt: 2, color: '#fffffe' }}
                   >
                     <Typography variant="h6">
-                    {data && <span style={{ fontWeight: 700 }}>{data.stats.totalFollowers}</span>} Followers
+                      {data && (
+                        <span style={{ fontWeight: 700 }}>
+                          {data.stats.totalFollowers}
+                        </span>
+                      )}{' '}
+                      Followers
                     </Typography>
                     <Typography variant="h6">
-                      {data && <span style={{ fontWeight: 700 }}>{data.stats.totalPosts}</span>} posts
+                      {data && (
+                        <span style={{ fontWeight: 700 }}>
+                          {data.stats.totalPosts}
+                        </span>
+                      )}{' '}
+                      posts
                     </Typography>
                     {/* <Typography variant="h6">
                       <span style={{ fontWeight: 700 }}>67</span> subscribers
@@ -95,7 +104,7 @@ const UserCard = () => {
                     spacing={1}
                     sx={{ mt: 2, color: '#fffffe' }}
                   >
-                    {/* <Typography variant="h6">
+                    <Typography variant="h6">
                       <span style={{ fontWeight: 700 }}>Genre</span> -{' '}
                     </Typography>
                     <Typography
@@ -121,8 +130,8 @@ const UserCard = () => {
                       }}
                     >
                       Design
-                    </Typography> */}
-                    {/* <Typography
+                    </Typography>
+                    <Typography
                       variant="body1"
                       sx={{
                         backgroundColor: '#7f5af0',
@@ -133,37 +142,34 @@ const UserCard = () => {
                       }}
                     >
                       Bussiness
-                    </Typography> */}
+                    </Typography>
                   </Stack>
                   <Typography
                     sx={{ mt: 3.5, color: '#94a1b2' }}
                     variant="body1"
                   >
-                    {data && <>
-                     {data.bio}
-                    </>}
+                    {data && <>{data.bio}</>}
                   </Typography>
                   <Stack
                     direction="row"
                     spacing={1}
-                    sx={{ mt: 4, justifyContent: 'flex-end' }}
+                    sx={{
+                      mt: 4,
+                      display: 'flex',
+                      justifyContent: 'flex-end',
+                      alignItems: 'flex-end',
+                    }}
                   >
-                    <IconButton aria-label="delete" sx={{ color: '#7f5af0' }}>
+                    <IconButton sx={{ color: '#7f5af0' }}>
                       <Facebook />
                     </IconButton>
-                    <IconButton aria-label="delete" sx={{ color: '#7f5af0' }}>
+                    <IconButton sx={{ color: '#7f5af0' }}>
                       <Instagram />
                     </IconButton>
-                    <IconButton
-                      aria-label="add an alarm"
-                      sx={{ color: '#7f5af0' }}
-                    >
+                    <IconButton sx={{ color: '#7f5af0' }}>
                       <Twitter />
                     </IconButton>
-                    <IconButton
-                      aria-label="add to shopping cart"
-                      sx={{ color: '#7f5af0' }}
-                    >
+                    <IconButton sx={{ color: '#7f5af0' }}>
                       <Mail />
                     </IconButton>
                   </Stack>
@@ -199,7 +205,10 @@ const useStyles = makeStyles((theme) => ({
   gridPadding: {
     width: '100%',
     paddingLeft: '1.5rem',
-    paddingRight: '1.5rem',
+    // display: 'flex',
+    // flexDirection: 'column',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     [theme.breakpoints.down('md')]: {
       marginTop: '2rem',
     },
@@ -217,7 +226,7 @@ const useStyles = makeStyles((theme) => ({
   },
   profileImage: {
     height: 'auto',
-    width: '100%',
+    width: '80%',
   },
   columnFlex: {
     display: 'flex',
