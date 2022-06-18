@@ -32,7 +32,7 @@ export default function PaymentForm() {
   const [CoverimageURI, setCoverImageURI] = useState();
   const [name, setName] = useState('');
   const [bio, setBio] = useState('');
-  const{profileId} = useContext(Web3Context)
+  const { profileId } = useContext(Web3Context);
   const handleCoverImage = (event) => {
     setCoverImage(event.target.files[0]);
   };
@@ -54,7 +54,7 @@ export default function PaymentForm() {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        setCoverImageURI(data.url)
+        setCoverImageURI(data.url);
         console.log('Image Uploaded');
       })
       .catch((err) => console.log(err));
@@ -77,7 +77,7 @@ export default function PaymentForm() {
     console.log(finalResult);
 
     await setProfileMetadata(profileId, finalResult);
-    alert('Details Added')
+    alert('Details Added');
   };
 
   return (
@@ -123,28 +123,37 @@ export default function PaymentForm() {
           />
         </Grid>
         <Grid item xs={12}>
-          {/* <label for="image">Select a file:</label>
-                    <input onChange={handleImage} type="file" id="image" name="image"/> */}
-          <Input
-            accept="image/*"
-            id="contained-button-file"
-            multiple
-            type="file"
-            onChange={handleCoverImage}
-            name="image"
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={8}>
+              <div className="input-group mb-3">
+                <input
+                  type="file"
+                  className="form-control"
+                  id="inputGroupFile02"
+                  onChange={handleCoverImage}
+                />
+                <label className="input-group-text" for="inputGroupFile02">
+                  Upload
+                </label>
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <Button
+                fullWidth
+                variant="contained"
+                component="span"
+                sx={{ mb: 3, backgroundColor: '#7f5af0' }}
+                onClick={() => UploadImage()}
+              >
+                Upload Image
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
           <Button
             fullWidth
-            sx={{ mt: 2, backgroundColor: '#7f5af0' }}
-            variant="contained"
-            component="span"
-            onClick={() => UploadImage()}
-          >
-            Upload your cover Image
-          </Button>
-          <Button
-            fullWidth
-            sx={{ mt: 2, backgroundColor: '#7f5af0' }}
+            sx={{ backgroundColor: '#7f5af0' }}
             variant="contained"
             component="span"
             onClick={handleData}
