@@ -76,7 +76,7 @@ export default function PaymentForm() {
     //console.log(result)
     console.log(finalResult);
 
-    const res = await setProfileMetadata(profileId, finalResult);
+    await setProfileMetadata(profileId, finalResult);
     alert('Details Added')
   };
 

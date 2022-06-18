@@ -60,7 +60,7 @@ function Navbar() {
   }, [profileId])
   
   const getProfile = async () => {
-    console.log(profileId)
+    //console.log(profileId)
     const a = {
       profileIds: [profileId],
       limit: 50,
@@ -68,9 +68,9 @@ function Navbar() {
     const res2 = await getProfiles(a);
     console.log(res2);
      const res =
-       res2.data.profiles.lenght?res2.data.profiles.items[0]:null
+       res2.data.profiles.items.length?res2.data.profiles.items[0]:null
        setData(res)
-       console.log()
+      
       
     
   };
