@@ -5,6 +5,7 @@ import { TextField, Input, Button, styled } from '@mui/material';
 import { setProfileMetadata } from '../../Lens/utils/setProfileMetadata';
 import { v4 as uuidv4 } from 'uuid';
 import client from '../../Lens/utils/ipfs';
+import Web3Context from '../../context';
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -29,10 +30,9 @@ const CssTextField = styled(TextField)({
 export default function PaymentForm() {
   const [Coverimage, setCoverImage] = useState();
   const [CoverimageURI, setCoverImageURI] = useState();
-  const [ProfileimageURI, setProfileImageURI] = useState();
   const [name, setName] = useState('');
   const [bio, setBio] = useState('');
-  const [profileId, setProfileId] = useState('');
+  const{profileId} = useContext(Web3Context)
   const handleCoverImage = (event) => {
     setCoverImage(event.target.files[0]);
   };
@@ -43,9 +43,9 @@ export default function PaymentForm() {
   const handleBio = (event) => {
     setBio(() => ([event.target.name] = event.target.value));
   };
-  const UploadImage = async (image, ind) => {
+  const UploadImage = async () => {
     const data = new FormData();
-    data.append('file', image);
+    data.append('file', Coverimage);
     data.append('upload_preset', 'mystiq');
     data.append('cloud_name', 'doybtqm8h');
     await fetch('https://api.cloudinary.com/v1_1/doybtqm8h/image/upload', {
@@ -54,7 +54,7 @@ export default function PaymentForm() {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        !ind ? setCoverImageURI(data.url) : setProfileImageURI(data.url);
+        setCoverImageURI(data.url)
         console.log('Image Uploaded');
       })
       .catch((err) => console.log(err));
@@ -77,7 +77,7 @@ export default function PaymentForm() {
     console.log(finalResult);
 
     const res = await setProfileMetadata(profileId, finalResult);
-    console.log(res);
+    alert('Details Added')
   };
 
   return (
@@ -138,7 +138,7 @@ export default function PaymentForm() {
             sx={{ mt: 2, backgroundColor: '#7f5af0' }}
             variant="contained"
             component="span"
-            onClick={() => UploadImage(Coverimage, 0)}
+            onClick={() => UploadImage()}
           >
             Upload your cover Image
           </Button>

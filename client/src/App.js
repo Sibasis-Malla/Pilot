@@ -19,6 +19,8 @@ import Checkout from './components/forms/Checkout';
 function App() {
   const {checkIfWalletIsConnected,account} = useContext(Web3Context);
   window.ethereum&&window.ethereum.on('accountsChanged', function (accounts) {
+   localStorage.removeItem('accessToken')
+   localStorage.removeItem('refershToken')
    window.location.reload()
   });
  

@@ -1,22 +1,25 @@
-import React, { useState, useContext } from 'react';
+import React, { useState,useContext } from 'react';
 import { Typography, Input, Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import { createProfile, getProfiles } from '../../Lens/query';
+import {  getProfiles } from '../../Lens/query';
 import { setProfileImageUriNormal } from '../../Lens/utils/setProfilePic';
+import Web3Provider from '../../context/Web3provider';
+import Web3Context from '../../context';
 
 export default function Review() {
   const [Profileimage, setProfileImage] = useState();
-  const [CoverimageURI, setCoverImageURI] = useState();
   const [ProfileimageURI, setProfileImageURI] = useState();
-  const [profileId, setProfileId] = useState('');
+  const {profileId,account} = useContext(Web3Context)
+ 
 
   const handleProfileImage = (event) => {
     setProfileImage(event.target.files[0]);
   };
 
-  const UploadImage = async (image, ind) => {
+  const UploadImage = async () => {
+
     const data = new FormData();
-    data.append('file', image);
+    data.append('file', Profileimage);
     data.append('upload_preset', 'mystiq');
     data.append('cloud_name', 'doybtqm8h');
     await fetch('https://api.cloudinary.com/v1_1/doybtqm8h/image/upload', {
@@ -25,8 +28,9 @@ export default function Review() {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        !ind ? setCoverImageURI(data.url) : setProfileImageURI(data.url);
-        console.log('Image Uploaded');
+       setProfileImageURI(data.url);
+        console.log('Image Uploaded')
+        alert('Image Uploaded');
       })
       .catch((err) => console.log(err));
   };
@@ -34,10 +38,12 @@ export default function Review() {
   const handleProfilePic = async () => {
     const res = await setProfileImageUriNormal(profileId, ProfileimageURI);
     console.log(res);
+    alert('profile pic Uploaded')
+    window.location.href = `/`
   };
   const getProfile = async () => {
     const a = {
-      ownedBy: ['0x49535e0D37E232F43b1c35541978c562051473D6'],
+      ownedBy: [`${account.currentAccount}`],
       limit: 50,
     };
     const res2 = await getProfiles(a);
@@ -66,7 +72,7 @@ export default function Review() {
           variant="contained"
           sx={{ mt: 3, mb: 2, backgroundColor: '#7f5af0' }}
           component="span"
-          onClick={() => UploadImage(Profileimage, 1)}
+          onClick={() => UploadImage()}
         >
           Upload your Profile Pic
         </Button>

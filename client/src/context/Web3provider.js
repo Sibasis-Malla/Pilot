@@ -80,7 +80,7 @@ const Web3Provider = ({ children }) => {
     if (accounts.length !== 0) {
       //const account = accounts[0];
       // console.log('Found an authorized account:', account);
-      //login(accounts[0])
+      // login(accounts[0])
       //console.log(chain)
       
       getContract(chain);

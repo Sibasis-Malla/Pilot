@@ -2,7 +2,7 @@ export const createAccount = async(instance,id,acc)=>{
     if (!instance) {
         return null;
       }
-    await instance.methods.createAccount(id).call({from:acc})
+    await instance.methods.createAccount(id).send({from:acc})
 }
 export const allPilotAccounts = async (instance) => {
     //console.log(instance)

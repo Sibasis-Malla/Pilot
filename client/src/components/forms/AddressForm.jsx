@@ -29,7 +29,6 @@ const CssTextField = styled(TextField)({
 
 export default function AddressForm() {
   const [handleName, setHandleName] = useState('');
-  const [profileId, setProfileId] = useState('');
   const { pilotContract, account } = useContext(Web3Context);
 
   const handleUsername = (event) => {
@@ -46,13 +45,14 @@ export default function AddressForm() {
     const res = await createProfile(obj);
     console.log(res);
     const res3 = await getProfile();
-    setProfileId(res3);
     await createAccount(pilotContract, res3, account.currentAccount);
+    alert('Handle registered')
+    window.location.reload()
   };
 
   const getProfile = async () => {
     const a = {
-      ownedBy: ['0x49535e0D37E232F43b1c35541978c562051473D6'],
+      ownedBy: [`${account.currentAccount}`],
       limit: 50,
     };
     const res2 = await getProfiles(a);
