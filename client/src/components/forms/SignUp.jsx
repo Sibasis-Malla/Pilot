@@ -15,7 +15,7 @@ import { createAccount, getProfileId } from "../../Lens/utils/pilot-utils";
 import { v4 as uuidv4 } from "uuid";
 import client from "../../Lens/utils/ipfs";
 import Web3Context from "../../context";
-import { Contract } from "ethers";
+
 
 const Input = styled("input")({});
 
