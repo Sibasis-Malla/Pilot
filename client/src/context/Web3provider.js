@@ -5,7 +5,7 @@ import LensAbi from '../contracts/Lens.json'
 import { Web3Context } from './index';
 import Web3 from 'web3';
 import { ethers } from 'ethers';
-import { generateChallenge,authenticate,refreshAuth } from "../Lens/query";
+import { generateChallenge,authenticate,refreshAuth,getProfiles } from "../Lens/query";
 import jwt_decode from "jwt-decode";
 
 const Web3Provider = ({ children }) => {
@@ -17,6 +17,7 @@ const Web3Provider = ({ children }) => {
   const [pilotContract, setPilotContract] = useState('');
   const [lensContract, setLensContract] = useState('');
   const [loginStat,setStat] = useState(false)
+  const [profileId,setProfileId] = useState('')
 
   // const connectWeb3 = new Promise(async (resolve) => {
   //   const web3 = await getWeb3();
@@ -81,7 +82,9 @@ const Web3Provider = ({ children }) => {
       // console.log('Found an authorized account:', account);
       //login(accounts[0])
       //console.log(chain)
+      
       getContract(chain);
+      await getProfile(accounts[0]);
     } else {
       //console.log('No authorized account found');
     }
@@ -130,6 +133,7 @@ const Web3Provider = ({ children }) => {
     console.log(accessTokens);
     localStorage.setItem('refershToken',accessTokens.data.authenticate.refreshToken)
     localStorage.setItem('accessToken',accessTokens.data.authenticate.accessToken)
+    window.location.reload()
     
    
    }
@@ -153,11 +157,23 @@ const Web3Provider = ({ children }) => {
      localStorage.setItem('accessToken',b.data.refresh.accessToken)
    }
   }
+  const getProfile = async (accounts) => {
+    const a = {
+      ownedBy: [`${accounts}`],
+      limit: 50,
+    };
+    const res2 = await getProfiles(a);
+    //console.log(res2);
+    const res =
+      res2.data.profiles.items[res2.data.profiles.items.length - 1].id;
+      setProfileId(res)
+    
+  };
    
 
   return (
     <Web3Context.Provider
-      value={{ connectWallet, checkIfWalletIsConnected, account, pilotContract,lensContract,loginStat,login}}
+      value={{ connectWallet, checkIfWalletIsConnected, account, pilotContract,lensContract,loginStat,login,profileId}}
     >
       {children}
     </Web3Context.Provider>

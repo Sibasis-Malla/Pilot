@@ -1,4 +1,6 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+import { useParams } from 'react-router-dom'
+import { getProfiles } from '../../Lens/query';
 
 // Libraries
 import {
@@ -13,8 +15,30 @@ import {
 import makeStyles from '@mui/styles/makeStyles';
 import { Facebook, Instagram, Mail, Twitter } from '@mui/icons-material';
 
+
 const UserCard = () => {
+  const [data,setData] = useState("")
   const classes = useStyles();
+  const{id} = useParams();
+  useEffect(() => {
+   getProfile()   
+  }, [])
+  
+  const getProfile = async () => {
+    const a = {
+      profileIds: [`${id}`],
+      limit: 50,
+    };
+    const res2 = await getProfiles(a);
+    console.log(res2);
+     const res =
+       res2.data.profiles.items[0];
+       setData(res)
+       console.log()
+      
+    
+  };
+
 
   return (
     <div className={classes.wrapper}>
@@ -22,11 +46,11 @@ const UserCard = () => {
         <CardContent>
           <Grid container>
             <Grid item md={4} sm={12} className={classes.gridPadding}>
-              <img
+              {data && <img
                 className={classes.profileImage}
-                src="https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png"
+                src={`${data.picture.original.url}`}
                 alt="Sambit Sankalp"
-              />
+              />}
               <Stack direction="row" spacing={2} sx={{ mt: 2, width: '100%' }}>
                 <Button
                   fullWidth
@@ -35,17 +59,20 @@ const UserCard = () => {
                 >
                   Follow
                 </Button>
-                <Button fullWidth variant="outlined" sx={{ color: '#7f5af0' }}>
+                {/* <Button fullWidth variant="outlined" sx={{ color: '#7f5af0' }}>
                   Subscribe
-                </Button>
+                </Button> */}
               </Stack>
             </Grid>
             <Grid item md={8} sm={12} className={classes.gridPadding}>
               <div className={classes.userData}>
                 <div className={classes.columnFlex}>
                   <div className={classes.userName}>
-                    <Typography variant="h4" sx={{ color: '#fffffe' }}>
-                      Sambit Sankalp
+                  {data && <Typography variant="h4" sx={{ color: '#fffffe' }}>
+                    {data.name}
+                  </Typography>}
+                  <Typography variant="h6">
+                    {data && <span style={{ fontWeight: 700 }}>{data.handle}</span>} 
                     </Typography>
                   </div>
                   <Stack
@@ -54,21 +81,21 @@ const UserCard = () => {
                     sx={{ mt: 2, color: '#fffffe' }}
                   >
                     <Typography variant="h6">
-                      <span style={{ fontWeight: 700 }}>100</span> followers
+                    {data && <span style={{ fontWeight: 700 }}>{data.stats.totalFollowers}</span>} Followers
                     </Typography>
                     <Typography variant="h6">
-                      <span style={{ fontWeight: 700 }}>45</span> posts
+                      {data && <span style={{ fontWeight: 700 }}>{data.stats.totalPosts}</span>} posts
                     </Typography>
-                    <Typography variant="h6">
+                    {/* <Typography variant="h6">
                       <span style={{ fontWeight: 700 }}>67</span> subscribers
-                    </Typography>
+                    </Typography> */}
                   </Stack>
                   <Stack
                     direction="row"
                     spacing={1}
                     sx={{ mt: 2, color: '#fffffe' }}
                   >
-                    <Typography variant="h6">
+                    {/* <Typography variant="h6">
                       <span style={{ fontWeight: 700 }}>Genre</span> -{' '}
                     </Typography>
                     <Typography
@@ -94,8 +121,8 @@ const UserCard = () => {
                       }}
                     >
                       Design
-                    </Typography>
-                    <Typography
+                    </Typography> */}
+                    {/* <Typography
                       variant="body1"
                       sx={{
                         backgroundColor: '#7f5af0',
@@ -106,21 +133,15 @@ const UserCard = () => {
                       }}
                     >
                       Bussiness
-                    </Typography>
+                    </Typography> */}
                   </Stack>
                   <Typography
                     sx={{ mt: 3.5, color: '#94a1b2' }}
                     variant="body1"
                   >
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Quos blanditiis tenetur unde suscipit, quam beatae rerum
-                    inventore consectetur, neque doloribus, cupiditate numquam
-                    dignissimos laborum fugiat deleniti? Eum quasi quidem
-                    quibusdam.Lorem ipsum dolor sit amet, consectetur
-                    adipisicing elit. Quos blanditiis tenetur unde suscipit,
-                    quam beatae rerum inventore consectetur, neque doloribus,
-                    cupiditate numquam dignissimos laborum fugiat deleniti? Eum
-                    quasi quidem quibusdam.
+                    {data && <>
+                     {data.bio}
+                    </>}
                   </Typography>
                   <Stack
                     direction="row"

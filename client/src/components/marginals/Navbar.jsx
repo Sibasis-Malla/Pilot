@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,useEffect } from 'react';
 
 import {
   Typography,
@@ -17,11 +17,13 @@ import { Link } from 'react-router-dom';
 import { Add, WindowRounded } from '@mui/icons-material';
 import Web3Context from '../../context';
 import RocketIcon from '@mui/icons-material/Rocket';
+import { getProfiles} from "../../Lens/query";
 
 function Navbar() {
   const classes = useStyles();
-  const { connectWallet, account, loginStat, login } = useContext(Web3Context);
+  const { connectWallet, account, loginStat, login,profileId } = useContext(Web3Context);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  
   const settings = [
     { link: '/profile', text: 'Profile' },
     { link: '/article/create', text: 'Write' },
@@ -35,13 +37,24 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+
+
+  
+
+
   return (
     <div className={classes.root}>
       <Container
         maxWidth="lg"
-        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
       >
         <Link to="/" className={classes.logoContainer}>
+          <RocketIcon sx={{ fontSize: '40px', mr: 0.5 }} />
           <Typography variant="h4" component="h4" className={classes.logo}>
             Pilot
           </Typography>
@@ -56,11 +69,7 @@ function Navbar() {
                   startIcon={<Add />}
                   onClick={() => login(account.currentAccount)}
                 >
-                  <Typography
-                    className={classes.tab}
-                    style={{ color: '#232946' }}
-                    variant="body1"
-                  >
+                  <Typography style={{ color: '#232946' }} variant="body1">
                     Login to Lens
                   </Typography>
                 </Button>
@@ -69,13 +78,19 @@ function Navbar() {
                   Connected to Lens
                 </Typography>
               )}
+              <Link to={`/${profileId}/profile`} className={classes.logoContainer}>
 
-              <Typography className={classes.tab} variant="body1">
+              <Typography
+                className={classes.tab}
+                sx={{ ml: 2 }}
+                variant="body1"
+              >
                 Hey,{' '}
                 {`${String(account.currentAccount).slice(0, 5)}...${String(
                   account.currentAccount
                 ).slice(String(account.currentAccount).length - 5)}`}
               </Typography>
+              </Link>
             </>
           ) : (
             <Button
@@ -84,10 +99,7 @@ function Navbar() {
               startIcon={<Add />}
               onClick={connectWallet}
             >
-              <Typography
-                style={{ color: '#232946' }}
-                variant="body1"
-              >
+              <Typography style={{ color: '#232946' }} variant="body1">
                 Connect to Wallet
               </Typography>
             </Button>
@@ -115,6 +127,9 @@ const useStyles = makeStyles((theme) => ({
   logoContainer: {
     textDecoration: 'none',
     color: '#fffffe',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   logo: {
     color: '#fffffe',

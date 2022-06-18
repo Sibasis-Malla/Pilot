@@ -14,6 +14,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import Checkout from './components/forms/Checkout';
 
 function App() {
   const {checkIfWalletIsConnected,account} = useContext(Web3Context);
@@ -32,8 +33,8 @@ function App() {
       <Marginals>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/signup" element={<Checkout />} />
+          <Route path="/:id/profile" element={<ProfilePage />} />
           <Route path="/article" element={<ArticlePage />} />
           <Route path="/article/create" element={<CreateArticle />} />
         </Routes>
