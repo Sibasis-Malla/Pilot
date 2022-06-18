@@ -3,9 +3,8 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { TextField, Button, styled } from '@mui/material';
 import { createProfile, getProfiles } from '../../Lens/query';
-import { createAccount, getProfileId } from '../../Lens/utils/pilot-utils';
+import { createAccount } from '../../Lens/utils/pilot-utils';
 import Web3Context from '../../context';
-import { Contract } from 'ethers';
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {

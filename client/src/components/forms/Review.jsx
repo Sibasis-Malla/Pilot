@@ -3,7 +3,6 @@ import { Typography, Input, Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import {  getProfiles } from '../../Lens/query';
 import { setProfileImageUriNormal } from '../../Lens/utils/setProfilePic';
-import Web3Provider from '../../context/Web3provider';
 import Web3Context from '../../context';
 
 export default function Review() {

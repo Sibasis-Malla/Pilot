@@ -11,11 +11,30 @@ import { styled } from "@mui/material/styles";
 import { createProfile, getProfiles } from "../../Lens/query";
 import { setProfileMetadata } from "../../Lens/utils/setProfileMetadata";
 import { setProfileImageUriNormal} from "../../Lens/utils/setProfilePic";
-import { createAccount, getProfileId } from "../../Lens/utils/pilot-utils";
+import { createAccount } from "../../Lens/utils/pilot-utils";
 import { v4 as uuidv4 } from "uuid";
 import client from "../../Lens/utils/ipfs";
 import Web3Context from "../../context";
 
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: '#7f5af0',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#7f5af0',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#7f5af0',
+    },
+    '&:hover fieldset': {
+      borderColor: '#7f5af0',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#7f5af0',
+    },
+  },
+});
 
 const Input = styled('input')({});
 

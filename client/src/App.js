@@ -1,10 +1,9 @@
-import React, { useContext,useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './App.css';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Marginals from './components/marginals/Marginals';
-import SignUp from './components/forms/SignUp';
 import ProfilePage from './pages/ProfilePage';
 import ArticlePage from './pages/ArticlePage';
 import CreateArticle from './pages/CreateArticle';
@@ -17,18 +16,17 @@ import '@fontsource/roboto/700.css';
 import Checkout from './components/forms/Checkout';
 
 function App() {
-  const {checkIfWalletIsConnected,account} = useContext(Web3Context);
-  window.ethereum&&window.ethereum.on('accountsChanged', function (accounts) {
-   localStorage.removeItem('accessToken')
-   localStorage.removeItem('refershToken')
-   window.location.reload()
-  });
- 
+  const { checkIfWalletIsConnected } = useContext(Web3Context);
+  window.ethereum &&
+    window.ethereum.on('accountsChanged', function (accounts) {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refershToken');
+      window.location.reload();
+    });
+
   useEffect(() => {
     checkIfWalletIsConnected();
-
   }, []);
-   
 
   return (
     <Router>
