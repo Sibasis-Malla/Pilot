@@ -26,20 +26,7 @@ const Sidebar = () => {
         'https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png',
       username: 'sambitsankalp',
     },
-    {
-      name: 'Sambit Sankalp',
-      link: '/profile',
-      imageUrl:
-        'https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png',
-      username: 'sambitsankalp',
-    },
-    {
-      name: 'Sambit Sankalp',
-      link: '/profile',
-      imageUrl:
-        'https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png',
-      username: 'sambitsankalp',
-    },
+  
   ];
   return (
     <>

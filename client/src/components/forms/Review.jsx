@@ -91,14 +91,14 @@ export default function Review() {
       >
         Sign Up
       </Button>
-      <Button
+      {/* <Button
         fullWidth
         variant="contained"
         sx={{ mt: 3, mb: 2, backgroundColor: '#7f5af0' }}
         onClick={getProfile}
       >
         Profile
-      </Button>
+      </Button> */}
     </React.Fragment>
   );
 }
