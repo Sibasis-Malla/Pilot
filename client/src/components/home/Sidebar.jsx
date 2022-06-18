@@ -1,19 +1,45 @@
 import React from 'react';
-import {
-  Typography,
-  Paper,
-  Stack,
-  Avatar
-} from '@mui/material';
+import { Typography, Paper, Stack, Avatar } from '@mui/material';
 import SmallBlogCard from '../profile/SmallBlogCard';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   const sections = [
-    { title: 'Technology', url: '#' },
-    { title: 'Design', url: '#' },
-    { title: 'Culture', url: '#' },
-    { title: 'Business', url: '#' },
-    { title: 'Politics', url: '#' },
+    {
+      name: 'Sambit Sankalp',
+      link: '/profile',
+      imageUrl:
+        'https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png',
+      username: 'sambitsankalp',
+    },
+    {
+      name: 'Sambit Sankalp',
+      link: '/profile',
+      imageUrl:
+        'https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png',
+      username: 'sambitsankalp',
+    },
+    {
+      name: 'Sambit Sankalp',
+      link: '/profile',
+      imageUrl:
+        'https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png',
+      username: 'sambitsankalp',
+    },
+    {
+      name: 'Sambit Sankalp',
+      link: '/profile',
+      imageUrl:
+        'https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png',
+      username: 'sambitsankalp',
+    },
+    {
+      name: 'Sambit Sankalp',
+      link: '/profile',
+      imageUrl:
+        'https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png',
+      username: 'sambitsankalp',
+    },
   ];
   return (
     <>
@@ -37,7 +63,6 @@ const Sidebar = () => {
             fontSize: '2rem',
             fontWeight: 'bold',
             color: '#fffffe',
-
           }}
           gutterBottom
         >
@@ -52,28 +77,32 @@ const Sidebar = () => {
             alignItems: 'center',
           }}
         >
-          {sections.map(({ title, url }) => (
-            // <Typography
-            //   variant="body1"
-            //   sx={{
-            //     backgroundColor: '#7f5af0',
-            //     color: '#fffffe',
-            //     py: 0.5,
-            //     px: 2,
-            //     mx: 0.5,
-            //     my: 1,
-            //     borderRadius: '10%',
-            //   }}
-            // >
-            //   {title}
-            // </Typography>
-            
-                <Avatar
-                >
-              </Avatar>
-            
-            
-            
+          {sections.map(({ name, link, imageUrl, username }) => (
+            <Link style={{ textDecoration: 'none' }} to={link}>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: '#fffffe',
+                  py: 0.5,
+                  px: 2,
+                  mx: 0.5,
+                  my: 1,
+                  borderRadius: '10%',
+                }}
+              >
+                <Stack direction="row" spacing={2}>
+                  <Avatar alt={name} src={imageUrl} />
+                  <Stack direction="column">
+                    <Typography variant="body1" sx={{ color: '#fffffe' }}>
+                      {name}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#bababa' }}>
+                      {username}
+                    </Typography>
+                  </Stack>
+                </Stack>
+              </Typography>
+            </Link>
           ))}
         </Stack>
       </Paper>
