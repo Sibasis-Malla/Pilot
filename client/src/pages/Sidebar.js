@@ -6,7 +6,7 @@ import { Typography, Button } from '@mui/material';
 import SamllBlogCard from '../components/profile/SmallBlogCard';
 import { Link } from 'react-router-dom';
 
-function Sidebar() {
+function Sidebar(props) {
   return (
     <Grid item xs={12} md={4}>
       <Paper
@@ -36,16 +36,16 @@ function Sidebar() {
             borderRadius: '50%',
             marginTop: 5,
           }}
-          src="https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png"
+          src={props.img}
           alt="user"
         />
-        <Link style={{ textDecoration: 'none' }} to="/profile">
+        <Link style={{ textDecoration: 'none' }} to={`/${props.id}/profile`}>
           <Typography
             variant="h5"
             fontWeight={700}
             sx={{ mt: 2, color: '#fffffe' }}
           >
-            Sambit Sankalp
+           {props.name}
           </Typography>
         </Link>
         <Stack
@@ -63,14 +63,10 @@ function Sidebar() {
           >
             Follow
           </Button>
-          <Button variant="outlined" sx={{ color: '#7f5af0' }}>
-            Subscribe
-          </Button>
+
         </Stack>
         <Typography sx={{ mt: 2, px: 1, color: '#94a1b2' }}>
-          Etiam porta sem malesuada magna mollis euismod. Cras mattis
-          consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla
-          sed consectetur.
+         {props.bio}
         </Typography>
       </Paper>
       <Typography

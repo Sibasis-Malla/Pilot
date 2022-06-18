@@ -6,15 +6,17 @@ import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Link } from 'react-router-dom';
+import {compiler} from 'markdown-to-jsx'
 
-function BlogCard() {
+
+function BlogCard(props) {
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
         <Card sx={{ display: 'flex', backgroundColor: '#242629' }}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" sx={{ color: '#fffffe' }} variant="h5">
-              Post Title
+              {props.title}
             </Typography>
             <Typography
               variant="subtitle1"
@@ -24,10 +26,12 @@ function BlogCard() {
               Nov 11
             </Typography>
             <Typography variant="subtitle1" sx={{ color: '#94a1b2' }} paragraph>
-              Cum sociis natoque penatibus et magnis dis parturient montes,
-              nascetur ridiculus mus
+              {compiler(
+              String(props.content).slice(0,90)
+              )}....
+            
             </Typography>
-            <Link style={{ textDecoration: 'none' }} to="/article">
+            <Link style={{ textDecoration: 'none' }} to={`/${props.id}/article`}>
               <Typography
                 sx={{ color: '#7f5af0' }}
                 variant="subtitle1"
@@ -40,7 +44,7 @@ function BlogCard() {
           <CardMedia
             component="img"
             sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
-            image="https://res.cloudinary.com/sambitsankalp/image/upload/v1655063242/hackathons/creative-workplace-with-computer-monitor-empty-no-people-cabinet-vector-id1165699436_qdf5yf.jpg"
+            image={props.img}
             alt="Post Title"
           />
         </Card>

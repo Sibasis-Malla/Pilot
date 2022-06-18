@@ -35,7 +35,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<Checkout />} />
           <Route path="/:id/profile" element={<ProfilePage />} />
-          <Route path="/article" element={<ArticlePage />} />
+          <Route path="/:pubId/article" element={<ArticlePage />} />
           <Route path="/:id/article/create" element={<CreateArticle />} />
         </Routes>
       </Marginals>
