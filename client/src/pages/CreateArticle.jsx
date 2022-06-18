@@ -14,6 +14,7 @@ import {
   Switch,
   FormControlLabel,
   Grid,
+  Container,
 } from '@mui/material';
 import { createPost } from '../Lens/utils/setPublication';
 import { v4 as uuidv4 } from 'uuid';
@@ -136,108 +137,110 @@ const CreateArticle = () => {
   };
 
   return (
-    <div className="App">
-      <Typography
-        variant="h4"
-        sx={{ my: 5, color: ' #fffffe' }}
-        fontWeight={700}
-        gutterBottom
-      >
-        Drop your thoughts
-      </Typography>
-      <FormGroup sx={{ color: ' #fffffe', mb: 5, alignItems: 'flex-end' }}>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={preview}
-              onChange={(e) => setPreview(e.target.checked)}
-              aria-label="login switch"
+    <Container maxWidth="lg" sx={{ my: 10, mt: 7 }}>
+      <div className="App">
+        <Typography
+          variant="h4"
+          sx={{ my: 5, color: ' #fffffe' }}
+          fontWeight={700}
+          gutterBottom
+        >
+          Drop your thoughts
+        </Typography>
+        <FormGroup sx={{ color: ' #fffffe', mb: 5, alignItems: 'flex-end' }}>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={preview}
+                onChange={(e) => setPreview(e.target.checked)}
+                aria-label="login switch"
+              />
+            }
+            label={preview ? 'Write in Editor' : 'Preview'}
+          />
+        </FormGroup>
+        {preview ? (
+          <div style={{ color: ' #fffffe' }}>
+            <h1>{title} </h1>
+            <img style={{ width: '50%' }} src={CoverimageURI} alt={title} />
+            <div
+              className="preview"
+              dangerouslySetInnerHTML={createMarkup(convertedContent)}
+            ></div>
+          </div>
+        ) : (
+          <>
+            <CssTextField
+              sx={{ mb: 3 }}
+              autoComplete="title"
+              name="title"
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              InputLabelProps={{
+                style: { color: ' #fffffe' },
+              }}
+              InputProps={{
+                style: { color: '#fffffe' },
+              }}
+              fullWidth
+              id="title"
+              label="Title"
+              autoFocus
             />
-          }
-          label={preview ? 'Write in Editor' : 'Preview'}
-        />
-      </FormGroup>
-      {preview ? (
-        <div style={{ color: ' #fffffe' }}>
-          <h1>{title} </h1>
-          <img style={{width: '50%'}} src={CoverimageURI} alt={title} />
-          <div
-            className="preview"
-            dangerouslySetInnerHTML={createMarkup(convertedContent)}
-          ></div>
-        </div>
-      ) : (
-        <>
-          <CssTextField
-            sx={{ mb: 3 }}
-            autoComplete="title"
-            name="title"
-            required
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            InputLabelProps={{
-              style: { color: ' #fffffe' },
-            }}
-            InputProps={{
-              style: { color: '#fffffe' },
-            }}
-            fullWidth
-            id="title"
-            label="Title"
-            autoFocus
-          />
-          <Grid container spacing={2}>
-            <Grid item xs={8}>
-              <div className="input-group mb-3">
-                <input
-                  type="file"
-                  className="form-control"
-                  id="inputGroupFile02"
-                  onChange={handleCoverImage}
-                />
-                <label className="input-group-text" for="inputGroupFile02">
-                  Upload
-                </label>
-              </div>
+            <Grid container spacing={2}>
+              <Grid item xs={8}>
+                <div className="input-group mb-3">
+                  <input
+                    type="file"
+                    className="form-control"
+                    id="inputGroupFile02"
+                    onChange={handleCoverImage}
+                  />
+                  <label className="input-group-text" for="inputGroupFile02">
+                    Upload
+                  </label>
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  component="span"
+                  sx={{ mb: 3, backgroundColor: '#7f5af0' }}
+                  onClick={() => UploadImage()}
+                >
+                  Upload your cover Image
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item xs={4}>
-              <Button
-                fullWidth
-                variant="contained"
-                component="span"
-                sx={{ mb: 3, backgroundColor: '#7f5af0' }}
-                onClick={() => UploadImage()}
-              >
-                Upload your cover Image
-              </Button>
-            </Grid>
-          </Grid>
-          <Editor
-            editorState={editorState}
-            onEditorStateChange={handleEditorChange}
-            wrapperClassName="wrapper-class"
-            editorClassName="editor-class"
-            toolbarClassName="toolbar-class"
-          />
-        </>
-      )}
-      <Button
-        fullWidth
-        variant="contained"
-        sx={{ mt: 3, mb: 2, backgroundColor: '#7f5af0' }}
-        onClick={handle}
-      >
-        Publish
-      </Button>
-      <Button
-        fullWidth
-        variant="contained"
-        sx={{ mt: 3, mb: 2, backgroundColor: '#7f5af0' }}
-        onClick={handlePub}
-      >
-        getPublish
-      </Button>
-    </div>
+            <Editor
+              editorState={editorState}
+              onEditorStateChange={handleEditorChange}
+              wrapperClassName="wrapper-class"
+              editorClassName="editor-class"
+              toolbarClassName="toolbar-class"
+            />
+          </>
+        )}
+        <Button
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2, backgroundColor: '#7f5af0' }}
+          onClick={handle}
+        >
+          Publish
+        </Button>
+        <Button
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2, backgroundColor: '#7f5af0' }}
+          onClick={handlePub}
+        >
+          getPublish
+        </Button>
+      </div>
+    </Container>
   );
 };
 
