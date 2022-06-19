@@ -13,7 +13,7 @@ const Sidebar = () => {
   const getProfile = async () => {
     //console.log(account)
     const a = {
-      profileIds: ['0x2d5b','0x2eae','0x2d87'],
+      profileIds: ['0x2d5b','0x2eae','0x2eee'],
       limit: 50,
     };
     const res2 = await getProfiles(a);

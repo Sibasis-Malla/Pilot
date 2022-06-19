@@ -36,7 +36,7 @@ export default function Review() {
     const res = await setProfileImageUriNormal(profileId, ProfileimageURI);
     // console.log(res);
     alert('profile pic Uploaded');
-    window.location.href = `/`;
+    window.location.href = `/${profileId}/profile`;
   };
 
   return (
