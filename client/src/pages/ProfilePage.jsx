@@ -43,12 +43,12 @@ const ProfilePage = () => {
               //console.log(metadata.media[0].original.url);
               return (
                 <BlogCard
-                  // title={metadata.name}
-                  // content={metadata.content}
-                  // img={metadata.media[0].original.url}
-                  // date={String(date).slice(3, 10)}
-                  // key={id}
-                  // id={id}
+                  title={metadata.name}
+                  content={metadata.content}
+                  img={metadata.media[0].original.url}
+                  date={String(date).slice(3, 10)}
+                  key={id}
+                  id={id}
                 />
               );
             })

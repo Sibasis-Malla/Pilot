@@ -4,11 +4,12 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
+import {compiler} from 'markdown-to-jsx'
 
 const img =
   'https://res.cloudinary.com/sambitsankalp/image/upload/v1655636634/hackathons/photo-1655372501819-4c1261a50c55_ktpdmj.jpg';
 
-function MainFeaturedPost() {
+function MainFeaturedPost(props) {
   return (
     <Paper
       sx={{
@@ -19,7 +20,7 @@ function MainFeaturedPost() {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundImage: `url(${img})`,
+        backgroundImage: `url(${props.img})`,
       }}
     >
       {/* Increase the priority of the hero background image */}
@@ -52,7 +53,7 @@ function MainFeaturedPost() {
                 color: '#fffffe',
               }}
             >
-              Title of a longer featured blog post
+              {props.title}
             </Typography>
             <Typography
               variant="h5"
@@ -60,14 +61,12 @@ function MainFeaturedPost() {
               color="inherit"
               paragraph
             >
-              Multiple lines of text that form the lede, informing new readers
-              quickly and efficiently about what's most interesting in this
-              post's contents.
+               {compiler(props.content)}
             </Typography>
             <Link
               variant="subtitle1"
               sx={{ color: '#7f5af0', textDecoration: 'none' }}
-              href="/article"
+              href={`/${props.id}/article`}
             >
               Continue reading…
             </Link>
