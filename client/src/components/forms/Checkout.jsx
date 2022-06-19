@@ -39,7 +39,7 @@ export default function Checkout() {
   };
 
   return (
-    <>
+    <Container maxWidth="lg" sx={{ my: 10, mt: 9 }}>
       <CssBaseline />
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper
@@ -111,6 +111,6 @@ export default function Checkout() {
           </React.Fragment>
         </Paper>
       </Container>
-    </>
+    </Container>
   );
 }

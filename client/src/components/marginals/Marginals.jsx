@@ -16,9 +16,9 @@ export default function Marginals({ children }) {
     >
       <CssBaseline />
       <Navbar />
-      <Container maxWidth="lg" sx={{ my: 10, mt: 7 }}>
-        {children}
-      </Container>
+      {/* <Container maxWidth="lg" sx={{ my: 10, mt: 7 }}> */}
+      {children}
+      {/* </Container> */}
 
       <Box
         component="footer"
@@ -30,10 +30,7 @@ export default function Marginals({ children }) {
           backgroundColor: '#242629',
         }}
       >
-        <Typography
-          variant="body1"
-          style={{ color: '#fffffe' }}
-        >
+        <Typography variant="body1" style={{ color: '#fffffe' }}>
           Made with ❤ by Team StarFox
         </Typography>
       </Box>
