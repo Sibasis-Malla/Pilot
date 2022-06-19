@@ -4,12 +4,13 @@ import UserCard from '../components/profile/ProfileCard';
 import Grid from '@mui/material/Grid';
 import { Typography, Container } from '@mui/material';
 import { getPublications } from '../Lens/query';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 const ProfilePage = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
   useEffect(() => {
     handlePub();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handlePub = async () => {
     const obj = {
@@ -25,18 +26,6 @@ const ProfilePage = () => {
   return (
     <>
       <UserCard />
-      {/* <Typography
-        variant="h4"
-        sx={{ mt: 10, fontWeight: 700, color: '#fffffe' }}
-      >
-        Popular Blogs
-      </Typography>
-      <Grid container spacing={3} sx={{ mt: 1, mb: 10 }}>
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-      </Grid> */}
       <Container maxWidth="lg" sx={{ my: 10, mt: 9 }}>
         <Typography
           variant="h4"
@@ -45,7 +34,7 @@ const ProfilePage = () => {
           All Blogs
         </Typography>
         <Grid container spacing={3} sx={{ mt: 1, mb: 10 }}>
-          {data &&
+          {data.length !== 0 ? (
             data.map((obj) => {
               const { metadata, id, createdAt } = obj;
               const date = new Date(createdAt);
@@ -61,7 +50,22 @@ const ProfilePage = () => {
                   id={id}
                 />
               );
-            })}
+            })
+          ) : (
+            <div style={{ marginLeft: '25px' }}>
+              <Typography variant="h6" sx={{ color: '#94a1b2' }}>
+                Write you blogs in{' '}
+                <Link to={`/${id}/article/create`}>
+                  <span
+                    style={{ color: '#7f5af0', textDecoration: 'underline' }}
+                  >
+                    text editor
+                  </span>
+                </Link>
+                .
+              </Typography>
+            </div>
+          )}
         </Grid>
       </Container>
     </>

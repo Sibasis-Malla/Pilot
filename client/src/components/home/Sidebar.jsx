@@ -61,9 +61,9 @@ const Sidebar = () => {
           }}
         >
           {data && data.map(({picture,id,name,handle }) => (
-            <Link style={{ textDecoration: 'none' }} to={`/${id}/profile`}>
-              <Typography
-                variant="body1"
+            <Link key={id} style={{ textDecoration: 'none' }} to={`/${id}/profile`}>
+              <Stack
+                direction="column"
                 sx={{
                   color: '#fffffe',
                   py: 0.5,
@@ -84,7 +84,7 @@ const Sidebar = () => {
                     </Typography>
                   </Stack>
                 </Stack>
-              </Typography>
+              </Stack>
             </Link>
           ))}
         </Stack>

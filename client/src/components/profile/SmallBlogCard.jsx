@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 function SmallBlogCard({ n }) {
   return (
     <Grid item xs={12} md={12} sx={{ my: 2 }}>
-      <CardActionArea component="a" href="#">
+      <CardActionArea>
         <Card sx={{ display: 'flex', backgroundColor: '#242629' }}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h5" sx={{ color: '#fffffe' }} variant="h5">

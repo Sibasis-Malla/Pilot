@@ -12,7 +12,7 @@ import {compiler} from 'markdown-to-jsx'
 function BlogCard(props) {
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href="#">
+      <CardActionArea>
         <Card sx={{ display: 'flex', backgroundColor: '#242629' }}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" sx={{ color: '#fffffe' }} variant="h5">

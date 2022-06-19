@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { TextField, Input, Button, styled } from '@mui/material';
+import { TextField, Button, styled } from '@mui/material';
 import { setProfileMetadata } from '../../Lens/utils/setProfileMetadata';
 import { v4 as uuidv4 } from 'uuid';
 import client from '../../Lens/utils/ipfs';
