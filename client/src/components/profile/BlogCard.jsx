@@ -23,7 +23,7 @@ function BlogCard(props) {
               sx={{ color: '#fffffe' }}
               color="text.secondary"
             >
-              Nov 11
+              {props.date}
             </Typography>
             <Typography variant="subtitle1" sx={{ color: '#94a1b2' }} paragraph>
               {compiler(
