@@ -18,7 +18,6 @@ import {
 } from '@mui/material';
 import { createPost } from '../Lens/utils/setPublication';
 import { v4 as uuidv4 } from 'uuid';
-import converter from 'html-to-markdown';
 import client from '../Lens/utils/ipfs';
 import Web3Context from '../context';
 
@@ -67,8 +66,7 @@ const CreateArticle = () => {
     setConvertedContent(currentContentAsHTML);
   };
   const markup = convertedContent
-    ? converter.convert(convertedContent)
-    : convertedContent;
+   
 
   const createMarkup = (html) => {
     return {
@@ -88,8 +86,9 @@ const CreateArticle = () => {
       .then((data) => {
         setCoverImageURI(data.url);
         setMime(data.format);
-        console.log(data);
-        console.log('Image Uploaded');
+        // console.log(data);
+        // console.log('Image Uploaded');
+        alert("Cover Image Uploaded")
       })
       .catch((err) => console.log(err));
   };
@@ -117,9 +116,11 @@ const CreateArticle = () => {
     const result = await client.add(JSON.stringify(obj));
     const str = 'https://ipfs.io/ipfs/';
     const finalResult = str.concat(String(result.path));
-    console.log(finalResult);
+    //console.log(finalResult);
     //console.log(result)
     await createPost(profileId, finalResult);
+    alert('Post Published!')
+    window.location.href = `/${profileId}/profile`
     //console.log(result);
   };
 

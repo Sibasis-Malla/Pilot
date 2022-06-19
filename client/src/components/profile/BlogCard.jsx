@@ -27,7 +27,7 @@ function BlogCard(props) {
             </Typography>
             <Typography variant="subtitle1" sx={{ color: '#94a1b2' }} paragraph>
               {compiler(
-              String(props.content).slice(0,90)
+              String(props.content).slice(0,60)
               )}....
             
             </Typography>
