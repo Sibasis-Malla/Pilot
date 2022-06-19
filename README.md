@@ -9,9 +9,9 @@
   <p align="center">
     The official repository for the website of PILOT
     <br />
-    <a href="https://hacknitr.tech">View Live</a>
+    <a href="https://pilot-two.vercel.app/">View Live</a>
     ·
-    <a href="#">Project Demo</a>
+    <a href="https://www.youtube.com/watch?v=LwG5t0DxFAc">Project Demo</a>
   </p>
 </p>
 
@@ -135,3 +135,5 @@ npm install <package-name> --save-dev
 ## Screenshots
 
 <img src="images/Screenshot1.png" alt="Logo" width="100%">
+<img src="images/Screenshot2.png" alt="Logo" width="100%">
+<img src="images/Sceenshot3.png" alt="Logo" width="100%">
