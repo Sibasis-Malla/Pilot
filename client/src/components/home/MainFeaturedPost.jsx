@@ -2,12 +2,9 @@ import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
-import {compiler} from 'markdown-to-jsx'
-
-const img =
-  'https://res.cloudinary.com/sambitsankalp/image/upload/v1655636634/hackathons/photo-1655372501819-4c1261a50c55_ktpdmj.jpg';
+import { compiler } from 'markdown-to-jsx';
+import { Link } from 'react-router-dom';
 
 function MainFeaturedPost(props) {
   return (
@@ -24,7 +21,7 @@ function MainFeaturedPost(props) {
       }}
     >
       {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} src={img} alt="Post Title" />}
+      {<img style={{ display: 'none' }} src={props.img} alt={props.title} />}
       <Box
         sx={{
           position: 'absolute',
@@ -55,18 +52,15 @@ function MainFeaturedPost(props) {
             >
               {props.title}
             </Typography>
-            <Typography
-              variant="h5"
-              sx={{ color: '#94a1b2' }}
-              color="inherit"
-              paragraph
-            >
-               {compiler(props.content)}....
+            <Typography variant="h5" sx={{ color: '#94a1b2', mb: 2 }} color="inherit">
+              {compiler(props.content)}
             </Typography>
             <Link
-              variant="subtitle1"
-              sx={{ color: '#7f5af0', textDecoration: 'none' }}
-              href={`/${props.id}/article`}
+              style={{
+                color: '#7f5af0',
+                textDecoration: 'none'
+              }}
+              to={`/${props.id}/article`}
             >
               Continue reading…
             </Link>
