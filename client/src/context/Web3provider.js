@@ -7,6 +7,7 @@ import Web3 from 'web3';
 import { ethers } from 'ethers';
 import { generateChallenge,authenticate,refreshAuth,getProfiles } from "../Lens/query";
 import jwt_decode from "jwt-decode";
+import { lensHub } from '../Lens/utils/lens-hub';
 
 const Web3Provider = ({ children }) => {
   //const [chainId,setChain]=useState("")
@@ -173,7 +174,7 @@ const Web3Provider = ({ children }) => {
 
   return (
     <Web3Context.Provider
-      value={{ connectWallet, checkIfWalletIsConnected, account, pilotContract,lensContract,loginStat,login,profileId}}
+      value={{ connectWallet, checkIfWalletIsConnected, account, pilotContract,lensContract,loginStat,login,profileId,lensHub}}
     >
       {children}
     </Web3Context.Provider>

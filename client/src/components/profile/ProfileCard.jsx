@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProfiles } from '../../Lens/query';
+import { follow } from '../../Lens/utils/pilot-utils';
+import { doesFollow } from '../../Lens/query';
+
+
 
 // Libraries
 import {
@@ -15,27 +19,53 @@ import {
 } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Facebook, Instagram, Mail, Twitter } from '@mui/icons-material';
+import Web3Context from '../../context';
 
 const UserCard = () => {
   const [data, setData] = useState('');
+  const [follows,setfollows] = useState(true)
   const classes = useStyles();
   const { id } = useParams();
+  const {lensHub,account}= useContext(Web3Context)
+
   useEffect(() => {
     getProfile();
-  }, []);
+    doesfollow()
+  }, [account.currentAccount]);
+  
+  const Follow = async()=>{
+    follow(lensHub,id);
+  }
+  
+  const doesfollow= async()=>{
+    const obj=[
+     
+    {
+        followerAddress:account.currentAccount,
+        profileId:id
+       }
+      
+    ]
+    
+    const res = account.currentAccount?await doesFollow(obj):null
+    console.log(res?res.data.doesFollow[0].follows:null)
+    setfollows(res?res.data.doesFollow[0].follows:false)
+    //console.log(res)
+  }
 
   const getProfile = async () => {
+    //console.log(account)
     const a = {
       profileIds: [`${id}`],
       limit: 50,
     };
     const res2 = await getProfiles(a);
-    console.log(res2);
+    //console.log(res2);
     const res = res2.data.profiles.items[0].name
       ? res2.data.profiles.items[0]
       : null;
     setData(res);
-    console.log(res.coverPicture.original.url);
+    //console.log(res.coverPicture.original.url);
   };
   const img = 'https://source.unsplash.com/random';
   return (
@@ -68,13 +98,14 @@ const UserCard = () => {
                   />
                 )}
                 <Stack direction="row" spacing={2} sx={{ mt: 2, width: '80%' }}>
-                  <Button
+                 { !follows?( <Button
                     fullWidth
                     variant="contained"
                     sx={{ backgroundColor: '#7f5af0' }}
+                    onClick={Follow}
                   >
-                    Follow
-                  </Button>
+                   Follow
+                  </Button>):<>Following</>}
                   {/* <Button fullWidth variant="outlined" sx={{ color: '#7f5af0' }}>
                   Subscribe
                 </Button> */}

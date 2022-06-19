@@ -29,3 +29,10 @@ export const allPilotAccounts = async (instance) => {
     const res = await instance.method.getCreatorId(add).call()
     return res;
   }
+
+  export const follow = async(instance,add)=>{
+    const res = await instance.follow([add],[0x0]);
+    console.log(res)
+    setTimeout(window.location.reload(false), 2000)
+
+  }

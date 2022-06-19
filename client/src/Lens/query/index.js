@@ -923,3 +923,24 @@ export const getPublication = (publicationId) => {
     },
   })
 }
+
+const DOES_FOLLOW = `
+  query($request: DoesFollowRequest!) {
+    doesFollow(request: $request) { 
+            followerAddress
+        profileId
+        follows
+        }
+  }
+`
+
+export const doesFollow = (followInfos) => {
+   return apolloClient.query({
+    query: gql(DOES_FOLLOW),
+    variables: {
+      request: {
+         followInfos,
+      },
+    },
+  })
+}
