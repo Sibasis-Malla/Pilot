@@ -41,6 +41,7 @@ export default function AddressForm() {
         freeFollowModule: true,
       },
     };
+    // eslint-disable-next-line
     const res = await createProfile(obj);
     //console.log(res);
     const res3 = await getProfile();

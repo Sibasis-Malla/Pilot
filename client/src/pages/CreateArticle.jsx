@@ -20,7 +20,6 @@ import { createPost } from '../Lens/utils/setPublication';
 import { v4 as uuidv4 } from 'uuid';
 import converter from 'html-to-markdown';
 import client from '../Lens/utils/ipfs';
-import { getPublications } from '../Lens/query';
 import Web3Context from '../context';
 
 const CssTextField = styled(TextField)({
@@ -122,15 +121,6 @@ const CreateArticle = () => {
     //console.log(result)
     await createPost(profileId, finalResult);
     //console.log(result);
-  };
-  const handlePub = async () => {
-    const obj = {
-      profileId: profileId,
-      publicationTypes: ['POST', 'COMMENT', 'MIRROR'],
-      limit: 10,
-    };
-    const res = await getPublications(obj);
-    console.log(res);
   };
 
   return (
