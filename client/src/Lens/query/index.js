@@ -944,3 +944,20 @@ export const doesFollow = (followInfos) => {
     },
   })
 }
+
+const HIDE_PUBLICATION = `
+  mutation($request: HidePublicationRequest!) { 
+   hidePublication(request: $request)
+ }
+`
+
+export const deletePublication = (publicationId) => {
+   return apolloClient.mutate({
+    mutation: gql(HIDE_PUBLICATION),
+    variables: {
+      request: {
+        publicationId,
+      },
+    },
+  })
+}

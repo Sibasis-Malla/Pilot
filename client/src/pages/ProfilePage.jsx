@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import BlogCard from '../components/profile/BlogCard';
 import UserCard from '../components/profile/ProfileCard';
 import Grid from '@mui/material/Grid';
-import { Typography, Container } from '@mui/material';
-import { getPublications } from '../Lens/query';
+import { Typography, Container,Button } from '@mui/material';
+import { getPublications,deletePublication } from '../Lens/query';
 import { Link, useParams } from 'react-router-dom';
 const ProfilePage = () => {
   const [data, setData] = useState([]);
@@ -22,10 +22,15 @@ const ProfilePage = () => {
     setData(res.data.publications.items);
     //console.log(res.data.publications.items[0].metadata.content);
   };
+  const deletes = async()=>{
+    const obj = { publicationId: "0x2d87-0x01" }
+    await deletePublication(obj)
+  }
 
   return (
     <>
       <UserCard />
+      <Button onClick={deletes}>delete</Button>
       <Container maxWidth="lg" sx={{ my: 10, mt: 9 }}>
         <Typography
           variant="h4"
