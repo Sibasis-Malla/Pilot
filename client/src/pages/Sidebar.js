@@ -49,7 +49,7 @@ function Sidebar(props) {
       return pub.id != props.pubId;
     }
     setData1(
-      result
+      result.length>=1?result:null
     );
     //console.log(res)
     //console.log(res.data.publications.items[0].metadata.content);
