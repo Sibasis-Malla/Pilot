@@ -4,10 +4,8 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { Link } from 'react-router-dom';
-import {compiler} from 'markdown-to-jsx'
-
+import { CardMedia, Link } from '@mui/material';
+import { compiler } from 'markdown-to-jsx';
 
 function BlogCard(props) {
   return (
@@ -26,12 +24,12 @@ function BlogCard(props) {
               {props.date}
             </Typography>
             <Typography variant="subtitle1" sx={{ color: '#94a1b2' }} paragraph>
-              {compiler(
-              String(props.content).slice(0,60)
-              )}....
-            
+              {compiler(String(props.content).slice(0, 60))}....
             </Typography>
-            <Link style={{ textDecoration: 'none' }} to={`/${props.id}/article`}>
+            <Link
+              style={{ textDecoration: 'none' }}
+              href={`/${props.id}/article`}
+            >
               <Typography
                 sx={{ color: '#7f5af0' }}
                 variant="subtitle1"

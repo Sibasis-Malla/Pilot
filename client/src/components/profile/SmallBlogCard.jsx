@@ -4,12 +4,10 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { Link } from 'react-router-dom';
+import { CardMedia, Link } from '@mui/material';
+// import { Link } from 'react-router-dom';
 
-
-
-function SmallBlogCard({ title,content,id,img,date }) {
+function SmallBlogCard({ title, content, id, img, date }) {
   return (
     <Grid item xs={12} md={12} sx={{ my: 2 }}>
       <CardActionArea>
@@ -26,15 +24,15 @@ function SmallBlogCard({ title,content,id,img,date }) {
               {date}
             </Typography>
             <Typography variant="body2" sx={{ color: '#94a1b2' }}>
-                  {content}....
+              {content}....
             </Typography>
-            <Link style={{ textDecoration: 'none' }} to={`/${id}/article`}>
+            <Link style={{ textDecoration: 'none' }} href={`/${id}/article`}>
               <Typography
                 variant="body2"
                 sx={{ color: '#7f5af0' }}
                 color="primary"
               >
-               Continue...
+                Continue...
               </Typography>
             </Link>
           </CardContent>
