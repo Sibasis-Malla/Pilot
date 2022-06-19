@@ -23,7 +23,6 @@ const ProfilePage = () => {
     //console.log(res)
     //console.log(res.data.publications.items[0].metadata.content);
   };
-  
   return (
     <>
       <UserCard />
@@ -43,9 +42,13 @@ const ProfilePage = () => {
               //console.log(metadata.media[0].original.url);
               return (
                 <BlogCard
-                  title={metadata.name}
-                  content={metadata.content}
-                  img={metadata.media[0].original.url}
+                  title={metadata && metadata.name}
+                  content={metadata && metadata.content}
+                  img={
+                    metadata &&
+                    metadata.media[0] &&
+                    metadata.media[0].original.url
+                  }
                   date={String(date).slice(3, 10)}
                   key={id}
                   id={id}
