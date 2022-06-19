@@ -160,7 +160,7 @@ const UserCard = () => {
                       spacing={1}
                       sx={{ mt: 2, color: '#fffffe' }}
                     >
-                      <Typography variant="h6">
+                      {/* <Typography variant="h6">
                         <span style={{ fontWeight: 700 }}>Genre</span> -{' '}
                       </Typography>
                       <Typography
@@ -198,7 +198,7 @@ const UserCard = () => {
                         }}
                       >
                         Bussiness
-                      </Typography>
+                      </Typography> */}
                     </Stack>
                     <Typography
                       sx={{ mt: 3.5, color: '#94a1b2' }}

@@ -5,45 +5,43 @@ import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import limitString from '../../utils/LimitString';
 import { Link } from 'react-router-dom';
 
-function SmallBlogCard({ n }) {
+
+
+function SmallBlogCard({ title,content,id,img,date }) {
   return (
     <Grid item xs={12} md={12} sx={{ my: 2 }}>
       <CardActionArea>
         <Card sx={{ display: 'flex', backgroundColor: '#242629' }}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h5" sx={{ color: '#fffffe' }} variant="h5">
-              Post Title
+              {title}
             </Typography>
             <Typography
               variant="body2"
               sx={{ color: '#fffffe' }}
               color="text.secondary"
             >
-              Nov 11
+              {date}
             </Typography>
-            <Typography variant="body2" sx={{ color: '#94a1b2' }} paragraph>
-              {limitString(
-                'Cum sociis natoque penatibus et magnis Cum sociis natoque penatibus et magnis Cum sociis natoque penatibus et magnis Cum sociis natoque penatibus et magnis',
-                n
-              )}
+            <Typography variant="body2" sx={{ color: '#94a1b2' }}>
+                  {content}....
             </Typography>
-            <Link style={{ textDecoration: 'none' }} to="/article">
+            <Link style={{ textDecoration: 'none' }} to={`/${id}/article`}>
               <Typography
                 variant="body2"
                 sx={{ color: '#7f5af0' }}
                 color="primary"
               >
-                Continue reading...
+               Continue...
               </Typography>
             </Link>
           </CardContent>
           <CardMedia
             component="img"
             sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
-            image="https://res.cloudinary.com/sambitsankalp/image/upload/v1655063242/hackathons/creative-workplace-with-computer-monitor-empty-no-people-cabinet-vector-id1165699436_qdf5yf.jpg"
+            image={`${img}`}
             alt="Post Title"
           />
         </Card>

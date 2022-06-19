@@ -61,7 +61,7 @@ function MainFeaturedPost(props) {
               color="inherit"
               paragraph
             >
-               {compiler(props.content)}
+               {compiler(props.content)}....
             </Typography>
             <Link
               variant="subtitle1"

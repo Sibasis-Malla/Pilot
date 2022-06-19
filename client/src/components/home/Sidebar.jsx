@@ -1,14 +1,47 @@
-import React,{useEffect,useState} from 'react';
+/*eslint-disable*/
+import React,{useEffect,useState,useContext} from 'react';
 import { Typography, Paper, Stack, Avatar } from '@mui/material';
 import SmallBlogCard from '../profile/SmallBlogCard';
 import { Link } from 'react-router-dom';
 import { getProfiles } from '../../Lens/query';
+import Web3Context from '../../context';
+import { getPublications } from '../../Lens/query';
+import {compiler}from 'markdown-to-jsx'
+
 
 const Sidebar = () => {
-  const [data,setData] = useState([]) 
+  const {profileId} = useContext(Web3Context)
+  const [data,setData] = useState([])
+  const [recent,setRecent] = useState([])
   useEffect(()=>{
     getProfile()
-  },[])
+    handlePub()
+    handlePub2()
+  },[profileId])
+  const [data1, setData1] = useState([]);
+ 
+  const handlePub = async () => {
+    const obj = {
+      profileId:'0x2eae',
+      publicationTypes: ["POST"],
+      limit: 1,
+    };
+    const res = await getPublications(obj);
+    setData1(res.data.publications.items.length?res.data.publications.items:null);
+    //console.log(res)
+    //console.log(res.data.publications.items[0].metadata.content);
+  };
+  const handlePub2 = async () => {
+    const obj = {
+      profileId:profileId,
+      publicationTypes: ["POST"],
+      limit: 1,
+    };
+    const res = await getPublications(obj);
+    setRecent(res.data.publications.items.length?res.data.publications.items:null);
+    //console.log(res)
+    //console.log(res.data.publications.items[0].metadata.content);
+  };
 
   const getProfile = async () => {
     //console.log(account)
@@ -26,7 +59,21 @@ const Sidebar = () => {
   };
   return (
     <>
+       <Typography
+          variant="h4"
+          sx={{
+            textAlign: 'left',
+            fontSize: '2rem',
+            fontWeight: 'bold',
+            color: '#fffffe',
+          }}
+          gutterBottom
+        >
+         Popular Pilots 
+        </Typography>
+    
       <Paper
+      
         elevation={0}
         sx={{
           p: 2,
@@ -39,18 +86,7 @@ const Sidebar = () => {
           backgroundColor: '#242629',
         }}
       >
-        <Typography
-          variant="h4"
-          sx={{
-            textAlign: 'left',
-            fontSize: '2rem',
-            fontWeight: 'bold',
-            color: '#fffffe',
-          }}
-          gutterBottom
-        >
-          Popular Pilots
-        </Typography>
+     
         <Stack
           direction="column"
           sx={{
@@ -103,9 +139,38 @@ const Sidebar = () => {
       >
         Recents
       </Typography>
-      <SmallBlogCard n={35} />
-      <SmallBlogCard n={35} />
-      <SmallBlogCard n={35} />
+      {recent &&
+            recent.map((obj) => {
+              const { metadata, id,createdAt } = obj;
+              const date = new Date(createdAt);
+              return (
+                <SmallBlogCard
+                  content={compiler(String(metadata.content).slice(0, 80))}
+                  title={metadata.name}
+                  img={metadata.media[0].original.url}
+                  date={String(date).slice(3, 10)}
+                  key={id}
+                  id={id}
+                />
+              );
+            })}
+      {data1 &&
+            data1.map((obj) => {
+              const { metadata, id,createdAt } = obj;
+              const date = new Date(createdAt);
+              return (
+                <SmallBlogCard
+                  content={compiler(String(metadata.content).slice(0, 80))}
+                  title={metadata.name}
+                  img={metadata.media[0].original.url}
+                  date={String(date).slice(3, 10)}
+                  key={id}
+                  id={id}
+                />
+              );
+            })}
+      
+     
     </>
   );
 };

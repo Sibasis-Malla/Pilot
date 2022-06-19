@@ -1,20 +1,24 @@
+/*eslint-disable*/
 import React, { useEffect, useContext, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import { Typography, Button } from '@mui/material';
-import SamllBlogCard from '../components/profile/SmallBlogCard';
+import SmallBlogCard from '../components/profile/SmallBlogCard';
 import { Link } from 'react-router-dom';
 import { doesFollow } from '../Lens/query';
 import { follow } from '../Lens/utils/pilot-utils';
-
+import { getPublications } from '../Lens/query';
+import {compiler}from 'markdown-to-jsx'
 import Web3Context from '../context';
 
 function Sidebar(props) {
+  const [data1, setData1] = useState([]);
   const [follows, setfollows] = useState(true);
   const { lensHub, account } = useContext(Web3Context);
   useEffect(() => {
     doesfollow();
+    handlePub1()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account.currentAccount]);
   const Follow = async () => {
@@ -28,8 +32,27 @@ function Sidebar(props) {
       },
     ];
     const res = account.currentAccount ? await doesFollow(obj) : null;
-    console.log(res ? res.data.doesFollow[0].follows : null);
+    //console.log(res ? res.data.doesFollow[0].follows : null);
     setfollows(res ? res.data.doesFollow[0].follows : false);
+  };
+  const handlePub1 = async () => {
+    const obj = {
+      profileId: props.id,
+      publicationTypes: ["POST"],
+      limit: 4,
+    };
+    const res = await getPublications(obj);
+    const rest =  res.data.publications.items.length ? res.data.publications.items : null
+    const result = rest.filter(checkPub);
+
+    function checkPub(pub) {
+      return pub.id != props.pubId;
+    }
+    setData1(
+      result
+    );
+    //console.log(res)
+    //console.log(res.data.publications.items[0].metadata.content);
   };
   return (
     <Grid item xs={12} md={4}>
@@ -107,8 +130,22 @@ function Sidebar(props) {
       >
         More from the Author
       </Typography>
-      <SamllBlogCard n={35} />
-      <SamllBlogCard n={35} />
+      {data1 &&
+            data1.map((obj) => {
+              const { metadata, id,createdAt } = obj;
+              const date = new Date(createdAt);
+              return (
+                <SmallBlogCard
+                  content={compiler(String(metadata.content).slice(0, 80))}
+                  title={metadata.name}
+                  img={metadata.media[0].original.url}
+                  date={String(date).slice(3, 10)}
+                  key={id}
+                  id={id}
+                />
+              );
+            })}
+   
     </Grid>
   );
 }
