@@ -25,7 +25,7 @@ function Main(props) {
       >
         {props.title}
       </Typography>
-      <img style={{ width: "100%" }} src={props.img} />
+      <img style={{ width: "100%" }} src={props.img} alt={props.title} />
       <Stack
         direction="row"
         sx={{

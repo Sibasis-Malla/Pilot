@@ -5,7 +5,8 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 
-const img = 'https://source.unsplash.com/random';
+const img =
+  'https://res.cloudinary.com/sambitsankalp/image/upload/v1655636634/hackathons/photo-1655372501819-4c1261a50c55_ktpdmj.jpg';
 
 function MainFeaturedPost() {
   return (

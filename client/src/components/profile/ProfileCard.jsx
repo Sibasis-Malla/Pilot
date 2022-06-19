@@ -1,10 +1,8 @@
-import React, { useEffect, useState,useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProfiles } from '../../Lens/query';
 import { follow } from '../../Lens/utils/pilot-utils';
 import { doesFollow } from '../../Lens/query';
-
-
 
 // Libraries
 import {
@@ -23,35 +21,34 @@ import Web3Context from '../../context';
 
 const UserCard = () => {
   const [data, setData] = useState('');
-  const [follows,setfollows] = useState(true)
+  const [follows, setfollows] = useState(true);
   const classes = useStyles();
   const { id } = useParams();
-  const {lensHub,account}= useContext(Web3Context)
+  const { lensHub, account } = useContext(Web3Context);
 
   useEffect(() => {
     getProfile();
-    doesfollow()
+    doesfollow();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account.currentAccount]);
-  
-  const Follow = async()=>{
-    follow(lensHub,id);
-  }
-  
-  const doesfollow= async()=>{
-    const obj=[
-     
-    {
-        followerAddress:account.currentAccount,
-        profileId:id
-       }
-      
-    ]
-    
-    const res = account.currentAccount?await doesFollow(obj):null
-    //console.log(res?res.data.doesFollow[0].follows:null)
-    setfollows(res?res.data.doesFollow[0].follows:false)
+
+  const Follow = async () => {
+    follow(lensHub, id);
+  };
+
+  const doesfollow = async () => {
+    const obj = [
+      {
+        followerAddress: account.currentAccount,
+        profileId: id,
+      },
+    ];
+
+    const res = account.currentAccount ? await doesFollow(obj) : null;
+
+    setfollows(res ? res.data.doesFollow[0].follows : false);
     //console.log(res)
-  }
+  };
 
   const getProfile = async () => {
     //console.log(account)
@@ -76,7 +73,6 @@ const UserCard = () => {
         backgroundColor: 'grey.800',
         color: '#fff',
         textAlign: 'left',
-        // filter: 'blur(8px)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
@@ -98,14 +94,24 @@ const UserCard = () => {
                   />
                 )}
                 <Stack direction="row" spacing={2} sx={{ mt: 2, width: '80%' }}>
-                 { !follows?( <Button
-                    fullWidth
-                    variant="contained"
-                    sx={{ backgroundColor: '#7f5af0' }}
-                    onClick={Follow}
-                  >
-                   Follow
-                  </Button>):<>Following</>}
+                  {!follows ? (
+                    <Button
+                      fullWidth
+                      variant="contained"
+                      sx={{ backgroundColor: '#7f5af0' }}
+                      onClick={Follow}
+                    >
+                      Follow
+                    </Button>
+                  ) : (
+                    <Button
+                      fullWidth
+                      variant="outlined"
+                      sx={{ color: '#7f5af0' }}
+                    >
+                      Following
+                    </Button>
+                  )}
                   {/* <Button fullWidth variant="outlined" sx={{ color: '#7f5af0' }}>
                   Subscribe
                 </Button> */}

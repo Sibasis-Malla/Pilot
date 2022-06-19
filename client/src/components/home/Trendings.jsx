@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssBaseline, Grid, Container, Typography } from '@mui/material';
+import { CssBaseline, Grid, Typography } from '@mui/material';
 import Sidebar from './Sidebar';
 import BlogCard from '../profile/BlogCard';
 import SmallBlogCard from '../profile/SmallBlogCard';

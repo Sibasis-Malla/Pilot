@@ -96,13 +96,13 @@ export default function Checkout() {
                       </Button>
                     ))}
 
-                  {activeStep != steps.length - 1 && (
+                  {activeStep !== steps.length - 1 && (
                     <Button
                       variant="contained"
                       onClick={handleNext}
                       sx={{ mt: 3, ml: 1, backgroundColor: "#7f5af0" }}
                     >
-                      {activeStep != steps.length - 1 && "Next"}
+                      {activeStep !== steps.length - 1 && "Next"}
                     </Button>
                   )}
                 </Box>

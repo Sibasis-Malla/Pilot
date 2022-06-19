@@ -1,14 +1,13 @@
 import React, { useState, useContext } from 'react';
-import { Typography, Input, Button } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import { getProfiles } from '../../Lens/query';
 import { setProfileImageUriNormal } from '../../Lens/utils/setProfilePic';
 import Web3Context from '../../context';
 
 export default function Review() {
   const [Profileimage, setProfileImage] = useState();
   const [ProfileimageURI, setProfileImageURI] = useState();
-  const { profileId, account } = useContext(Web3Context);
+  const { profileId } = useContext(Web3Context);
 
   const handleProfileImage = (event) => {
     setProfileImage(event.target.files[0]);
@@ -37,17 +36,6 @@ export default function Review() {
    // console.log(res);
     alert('profile pic Uploaded');
     window.location.href = `/`;
-  };
-  const getProfile = async () => {
-    const a = {
-      ownedBy: [`${account.currentAccount}`],
-      limit: 50,
-    };
-    const res2 = await getProfiles(a);
-    console.log(res2);
-    const res =
-      res2.data.profiles.items[res2.data.profiles.items.length - 1].id;
-    return res;
   };
 
   return (

@@ -21,7 +21,6 @@ import { v4 as uuidv4 } from 'uuid';
 import converter from 'html-to-markdown';
 import client from '../Lens/utils/ipfs';
 import { getPublications } from '../Lens/query';
-import { Title } from '@mui/icons-material';
 import Web3Context from '../context';
 
 const CssTextField = styled(TextField)({
@@ -48,7 +47,6 @@ const CreateArticle = () => {
   const [Coverimage, setCoverImage] = useState();
   const [CoverimageURI, setCoverImageURI] = useState();
   const [mime, setMime] = useState('');
-  const Input = styled('input')({});
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
@@ -105,7 +103,6 @@ const CreateArticle = () => {
       attributes: [],
       external_url: null,
       name: title,
-      attributes: null,
       image:
         'https://res.cloudinary.com/doybtqm8h/image/upload/v1655456517/fw9poxxmang3uyew3xen.jpg',
       imageMimeType: 'image/jpeg',

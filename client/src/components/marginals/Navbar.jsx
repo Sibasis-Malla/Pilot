@@ -28,20 +28,19 @@ function Navbar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const getProfile = async () => {
-    //console.log(profileId);
     const a = {
       profileIds: [profileId],
       limit: 50,
     };
     const res2 = await getProfiles(a);
-    //console.log(res2);
     const res = res2.data.profiles.items.length ? res2.data.profiles.items[0].name?res2.data.profiles.items[0]:null : null;
     setData(res);
   };
 
   useEffect(() => {
     profileId && getProfile();
-  }, [profileId, getProfile]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profileId]);
 
   const menu = profileId
     ? [

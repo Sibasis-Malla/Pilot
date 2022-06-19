@@ -12,6 +12,7 @@ export default function Blog() {
   const { pubId } = useParams();
   useEffect(() => {
     handlePub();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handlePub = async () => {
     const res = await getPublication(pubId);
