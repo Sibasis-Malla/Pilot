@@ -8,7 +8,7 @@ const Trendings = () => {
   return (
     <>
       <CssBaseline />
-      <Grid container spacing={5}>
+      <Grid sx={{ mt: 5 }} container spacing={5}>
         <Grid item xs={12} md={8}>
           <Typography
             variant="h4"

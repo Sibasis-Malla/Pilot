@@ -25,15 +25,16 @@ export default function Review() {
       .then((resp) => resp.json())
       .then((data) => {
         setProfileImageURI(data.url);
-       // console.log('Image Uploaded');
+        // console.log('Image Uploaded');
         alert('Image Uploaded');
       })
       .catch((err) => console.log(err));
   };
 
   const handleProfilePic = async () => {
+    // eslint-disable-next-line
     const res = await setProfileImageUriNormal(profileId, ProfileimageURI);
-   // console.log(res);
+    // console.log(res);
     alert('profile pic Uploaded');
     window.location.href = `/`;
   };
