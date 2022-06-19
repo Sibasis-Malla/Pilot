@@ -33,7 +33,7 @@ const Sidebar = () => {
   };
   const handlePub2 = async () => {
     const obj = {
-      profileId:profileId,
+      profileId:profileId?profileId:'0x2eee',
       publicationTypes: ["POST"],
       limit: 1,
     };
