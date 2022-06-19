@@ -101,7 +101,7 @@ const Sidebar = () => {
           color: '#fffffe',
         }}
       >
-        Subscribed
+        Recents
       </Typography>
       <SmallBlogCard n={35} />
       <SmallBlogCard n={35} />
