@@ -8,7 +8,7 @@ import { Container } from '@mui/material';
 const HomePage = () => {
   return (
     <Container maxWidth="lg" sx={{ my: 10, mt: 9 }}>
-      <Carousel autoPlay={true} infiniteLoop={true} showStatus={false}>
+      <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false} showStatus={false}>
         <MainFeaturedPost />
         <MainFeaturedPost />
         <MainFeaturedPost />

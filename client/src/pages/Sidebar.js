@@ -30,7 +30,7 @@ function Sidebar(props) {
       
     ]
     const res = account.currentAccount?await doesFollow(obj):null
-    console.log(res?res.data.doesFollow[0].follows:null)
+    //console.log(res?res.data.doesFollow[0].follows:null)
     setfollows(res?res.data.doesFollow[0].follows:false)
   }
   return (

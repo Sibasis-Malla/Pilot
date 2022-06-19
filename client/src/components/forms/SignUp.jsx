@@ -73,7 +73,7 @@ export default function SignUp() {
       .then((resp) => resp.json())
       .then((data) => {
        setCoverImageURI(data.url) 
-        console.log('Image Uploaded');
+       // console.log('Image Uploaded');
       })
       .catch((err) => console.log(err));
   };
@@ -85,7 +85,7 @@ export default function SignUp() {
       },
     };
     const res = await createProfile(obj);
-    console.log(res);
+    //console.log(res);
     const res3 = await getProfile();
     setProfileId(res3);
     await createAccount(pilotContract, res3, account.currentAccount);

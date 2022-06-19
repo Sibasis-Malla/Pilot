@@ -42,7 +42,7 @@ export default function AddressForm() {
       },
     };
     const res = await createProfile(obj);
-    console.log(res);
+    //console.log(res);
     const res3 = await getProfile();
     await createAccount(pilotContract, res3, account.currentAccount);
     alert('Handle registered')

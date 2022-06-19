@@ -16,7 +16,7 @@ export default function Blog() {
   const handlePub = async () => {
     const res = await getPublication(pubId);
     setData(res.data.publication);
-    console.log(res.data);
+    //console.log(res.data);
 
     //setData(res.data.publications.items);
     //console.log(res.data.publications.items[0].metadata.content);

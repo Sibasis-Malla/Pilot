@@ -1,33 +1,29 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { Typography, Paper, Stack, Avatar } from '@mui/material';
 import SmallBlogCard from '../profile/SmallBlogCard';
 import { Link } from 'react-router-dom';
+import { getProfiles } from '../../Lens/query';
 
 const Sidebar = () => {
-  const sections = [
-    {
-      name: 'Sambit Sankalp',
-      link: '/profile',
-      imageUrl:
-        'https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png',
-      username: 'sambitsankalp',
-    },
-    {
-      name: 'Sambit Sankalp',
-      link: '/profile',
-      imageUrl:
-        'https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png',
-      username: 'sambitsankalp',
-    },
-    {
-      name: 'Sambit Sankalp',
-      link: '/profile',
-      imageUrl:
-        'https://res.cloudinary.com/tedxnitrourkela/image/upload/v1643281545/team/technical/Sambit_Sankalp_omdbgy.png',
-      username: 'sambitsankalp',
-    },
-  
-  ];
+  const [data,setData] = useState([]) 
+  useEffect(()=>{
+    getProfile()
+  },[])
+
+  const getProfile = async () => {
+    //console.log(account)
+    const a = {
+      profileIds: ['0x2d5b','0x2eae','0x2d87'],
+      limit: 50,
+    };
+    const res2 = await getProfiles(a);
+    //console.log(res2.data.profiles.items);
+    // const res = res2.data.profiles.items[0].name
+    //   ? res2.data.profiles.items[0]
+    //   : null;
+     setData(res2.data.profiles.items);
+    //console.log(res.coverPicture.original.url);
+  };
   return (
     <>
       <Paper
@@ -64,8 +60,8 @@ const Sidebar = () => {
             alignItems: 'center',
           }}
         >
-          {sections.map(({ name, link, imageUrl, username }) => (
-            <Link style={{ textDecoration: 'none' }} to={link}>
+          {data && data.map(({picture,id,name,handle }) => (
+            <Link style={{ textDecoration: 'none' }} to={`/${id}/profile`}>
               <Typography
                 variant="body1"
                 sx={{
@@ -78,13 +74,13 @@ const Sidebar = () => {
                 }}
               >
                 <Stack direction="row" spacing={2}>
-                  <Avatar alt={name} src={imageUrl} />
+                  <Avatar alt={name} src={picture.original.url} />
                   <Stack direction="column">
                     <Typography variant="body1" sx={{ color: '#fffffe' }}>
                       {name}
                     </Typography>
                     <Typography variant="body2" sx={{ color: '#bababa' }}>
-                      {username}
+                      {handle}
                     </Typography>
                   </Stack>
                 </Stack>
