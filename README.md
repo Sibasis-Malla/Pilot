@@ -46,7 +46,7 @@ Pilot is decentralized Web3 Blogging platform built with Lens Protocol on Polygo
 Following technologies and libraries are used for the development of this website
 
 - [React](https://reactjs.org/)
-- [GraphQL](https://graphql.org/)
+- [Lens Protocol](https://docs.lens.xyz/docs)
 - [Apollo](https://www.apollographql.com/)
 - [IPFS](https://ipfs.io/)
 - [Material UI](https://mui.com/)
