@@ -129,8 +129,8 @@ npm install <package-name> --save-dev
 ## Features
 
 * Text editor using Draft-js and React
-* Blogging connections (like follow) using open-source social graph called Lens.
-* Data ownership of creators as blockchain is used
+* Blogging connections (like follow) using  decentralised social graph called Lens Protocol.
+* Data ownership of creators on blockchain.
 
 ## Screenshots
 
