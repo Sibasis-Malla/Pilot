@@ -59,6 +59,8 @@ To setup the project locally the steps below.
 
 ### Prerequisites
 
+- Please make sure you have [metamask](https://metamask.io/) installed and connected to polygon's mumbai testnet and have some test matic in your wallet
+
 - [Node.js](https://nodejs.org/en/download/)
 
   ```sh
