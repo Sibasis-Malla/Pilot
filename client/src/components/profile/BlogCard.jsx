@@ -1,13 +1,10 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardActionArea from '@mui/material/CardActionArea';
-import CardContent from '@mui/material/CardContent';
-import { CardMedia, Link } from '@mui/material';
+import React from 'react';
+
+// libraries
+import { CardMedia, Link, Typography, Grid, Card, CardActionArea, CardContent } from '@mui/material';
 import { compiler } from 'markdown-to-jsx';
 
-function BlogCard(props) {
+const BlogCard = (props) => {
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea>
@@ -38,6 +35,6 @@ function BlogCard(props) {
       </CardActionArea>
     </Grid>
   );
-}
+};
 
 export default BlogCard;

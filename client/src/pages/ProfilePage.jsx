@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
+
+// libraries
+import { Typography, Container, Grid } from '@mui/material';
+import { Link, useParams } from 'react-router-dom';
+
+// components
 import BlogCard from '../components/profile/BlogCard';
 import UserCard from '../components/profile/ProfileCard';
-import Grid from '@mui/material/Grid';
-import { Typography, Container } from '@mui/material';
+
+// lens queries
 import { getPublications } from '../Lens/query';
-import { Link, useParams } from 'react-router-dom';
+
 const ProfilePage = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
-  useEffect(() => {
-    handlePub();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
   const handlePub = async () => {
     const obj = {
       profileId: id,
@@ -20,9 +23,13 @@ const ProfilePage = () => {
     };
     const res = await getPublications(obj);
     setData(res.data.publications.items);
-    //console.log(res)
-    //console.log(res.data.publications.items[0].metadata.content);
   };
+
+  useEffect(() => {
+    handlePub();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <UserCard />

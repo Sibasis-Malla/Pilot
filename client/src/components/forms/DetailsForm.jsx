@@ -1,13 +1,17 @@
 import React, { useState, useContext } from 'react';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import { TextField, Button, styled } from '@mui/material';
-import { setProfileMetadata } from '../../Lens/utils/setProfileMetadata';
+
+// libraries
+import { TextField, Button, styled, Typography, Grid } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
+
+// lens queries
 import client from '../../Lens/utils/ipfs';
+import { setProfileMetadata } from '../../Lens/utils/setProfileMetadata';
+
+// context
 import Web3Context from '../../context';
 
-const CssTextField = styled(TextField)({
+const CustomizedInput = styled(TextField)({
   '& label.Mui-focused': {
     color: '#7f5af0',
   },
@@ -27,7 +31,7 @@ const CssTextField = styled(TextField)({
   },
 });
 
-export default function PaymentForm() {
+const DetailsForm = () => {
   const [Coverimage, setCoverImage] = useState();
   const [CoverimageURI, setCoverImageURI] = useState();
   const [name, setName] = useState('');
@@ -88,7 +92,7 @@ export default function PaymentForm() {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <CssTextField
+          <CustomizedInput
             onChange={handlename}
             name="name"
             InputLabelProps={{
@@ -104,7 +108,7 @@ export default function PaymentForm() {
           />
         </Grid>
         <Grid item xs={12}>
-          <CssTextField
+          <CustomizedInput
             required
             fullWidth
             multiline
@@ -160,4 +164,6 @@ export default function PaymentForm() {
       </Grid>
     </React.Fragment>
   );
-}
+};
+
+export default DetailsForm;

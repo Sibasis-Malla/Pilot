@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 
+// libraries
 import {
   Typography,
   Button,
@@ -15,12 +16,15 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
-import { Add } from '@mui/icons-material';
+import { Add, Rocket } from '@mui/icons-material';
+
+// context
 import Web3Context from '../../context';
-import RocketIcon from '@mui/icons-material/Rocket';
+
+// lens
 import { getProfiles } from '../../Lens/query';
 
-function Navbar() {
+const Navbar = () => {
   const classes = useStyles();
   const [data, setData] = useState('');
   const { connectWallet, account, loginStat, login, profileId } = useContext(Web3Context);
@@ -71,7 +75,7 @@ function Navbar() {
         }}
       >
         <Link to="/" className={classes.logoContainer}>
-          <RocketIcon sx={{ fontSize: '40px', mr: 0.5 }} />
+          <Rocket sx={{ fontSize: '40px', mr: 0.5 }} />
           <Typography variant="h4" component="h4" className={classes.logo}>
             Pilot
           </Typography>
@@ -154,16 +158,6 @@ function Navbar() {
                   ))}
                 </Menu>
               </Box>
-              {/* <Typography
-                className={classes.tab}
-                sx={{ ml: 2 }}
-                variant="body1"
-              >
-                Hey,{' '}
-                {`${String(account.currentAccount).slice(0, 5)}...${String(
-                  account.currentAccount
-                ).slice(String(account.currentAccount).length - 5)}`}
-              </Typography> */}
             </>
           ) : (
             <Button
@@ -181,7 +175,7 @@ function Navbar() {
       </Container>
     </div>
   );
-}
+};
 
 export default Navbar;
 

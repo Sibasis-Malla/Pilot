@@ -1,33 +1,52 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Paper from '@mui/material/Paper';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
-import Review from './Review';
+
+// libraries
+import {
+  CssBaseline,
+  Box,
+  Container,
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+  Button,
+  Typography,
+  styled,
+} from '@mui/material';
+
+// components
+import UsernameForm from './UsernameForm';
+import DetailsForm from './DetailsForm';
+import ProfileForm from './ProfileForms';
+
+const CustomizedLabel = styled(StepLabel)({
+  '& .MuiStepLabel-label': {
+    color: '#fff',
+  },
+  '& 	.MuiStepLabel-horizontal': {
+    color: '#fff',
+  },
+  '& 	.Mui-completed': {
+    color: '#fff',
+  },
+});
 
 const steps = ['Write username', 'Your Details', 'Profile Picture'];
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <UsernameForm />;
     case 1:
-      return <PaymentForm />;
+      return <DetailsForm />;
     case 2:
-      return <Review />;
+      return <ProfileForm />;
     default:
       throw new Error('Unknown step');
   }
 }
 
-export default function Checkout() {
+const SignUp = () => {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -56,7 +75,7 @@ export default function Checkout() {
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5, color: '#fffffe' }}>
             {steps.map((label) => (
               <Step sx={{ color: '#fffffe' }} key={label}>
-                <StepLabel sx={{ color: '#fffffe' }}>{label}</StepLabel>
+                <CustomizedLabel sx={{ color: '#fffffe' }}>{label}</CustomizedLabel>
               </Step>
             ))}
           </Stepper>
@@ -96,4 +115,6 @@ export default function Checkout() {
       </Container>
     </Container>
   );
-}
+};
+
+export default SignUp;

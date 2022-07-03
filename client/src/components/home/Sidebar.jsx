@@ -1,12 +1,20 @@
 /*eslint-disable*/
 import React, { useEffect, useState, useContext } from 'react';
+
+// libraries
 import { Typography, Paper, Stack, Avatar } from '@mui/material';
-import SmallBlogCard from '../profile/SmallBlogCard';
 import { Link } from 'react-router-dom';
-import { getProfiles } from '../../Lens/query';
-import Web3Context from '../../context';
-import { getPublications } from '../../Lens/query';
 import { compiler } from 'markdown-to-jsx';
+
+// components
+import SmallBlogCard from '../profile/SmallBlogCard';
+
+// lens queries
+import { getPublications } from '../../Lens/query';
+import { getProfiles } from '../../Lens/query';
+
+// context
+import Web3Context from '../../context';
 
 const Sidebar = () => {
   const { profileId } = useContext(Web3Context);
@@ -27,8 +35,6 @@ const Sidebar = () => {
     };
     const res = await getPublications(obj);
     setData1(res.data.publications.items.length ? res.data.publications.items : null);
-    //console.log(res)
-    //console.log(res.data.publications.items[0].metadata.content);
   };
   const handlePub2 = async () => {
     const obj = {
@@ -38,8 +44,6 @@ const Sidebar = () => {
     };
     const res = await getPublications(obj);
     setRecent(res.data.publications.items.length ? res.data.publications.items : null);
-    //console.log(res)
-    //console.log(res.data.publications.items[0].metadata.content);
   };
 
   const getProfile = async () => {
@@ -49,12 +53,8 @@ const Sidebar = () => {
       limit: 50,
     };
     const res2 = await getProfiles(a);
-    //console.log(res2.data.profiles.items);
-    // const res = res2.data.profiles.items[0].name
-    //   ? res2.data.profiles.items[0]
-    //   : null;
+
     setData(res2.data.profiles.items);
-    //console.log(res.coverPicture.original.url);
   };
   return (
     <>

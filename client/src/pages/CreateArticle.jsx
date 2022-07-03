@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
+
+// libraries
 import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import { convertToHTML } from 'draft-convert';
 import DOMPurify from 'dompurify';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Button,
   TextField,
@@ -16,12 +16,20 @@ import {
   Grid,
   Container,
 } from '@mui/material';
-import { createPost } from '../Lens/utils/setPublication';
 import { v4 as uuidv4 } from 'uuid';
+
+// lens queries
+import { createPost } from '../Lens/utils/setPublication';
 import client from '../Lens/utils/ipfs';
+
+// context
 import Web3Context from '../context';
 
-const CssTextField = styled(TextField)({
+// css libraries
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const CustomizedInput = styled(TextField)({
   '& label.Mui-focused': {
     color: '#7f5af0',
   },
@@ -42,14 +50,15 @@ const CssTextField = styled(TextField)({
 });
 
 const CreateArticle = () => {
-  const [Coverimage, setCoverImage] = useState();
-  const [CoverimageURI, setCoverImageURI] = useState();
+  const [coverImage, setCoverImage] = useState();
+  const [coverImageURI, setCoverImageURI] = useState();
   const [mime, setMime] = useState('');
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
   const [convertedContent, setConvertedContent] = useState(null);
   const [title, setTitle] = useState('');
   const [preview, setPreview] = useState(false);
   const { profileId } = useContext(Web3Context);
+
   const handleCoverImage = (event) => {
     setCoverImage(event.target.files[0]);
   };
@@ -63,6 +72,7 @@ const CreateArticle = () => {
     let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
     setConvertedContent(currentContentAsHTML);
   };
+
   const markup = convertedContent;
 
   const createMarkup = (html) => {
@@ -70,9 +80,10 @@ const CreateArticle = () => {
       __html: DOMPurify.sanitize(html),
     };
   };
+
   const UploadImage = async (image, ind) => {
     const data = new FormData();
-    data.append('file', Coverimage);
+    data.append('file', coverImage);
     data.append('upload_preset', 'mystiq');
     data.append('cloud_name', 'doybtqm8h');
     await fetch('https://api.cloudinary.com/v1_1/doybtqm8h/image/upload', {
@@ -83,8 +94,6 @@ const CreateArticle = () => {
       .then((data) => {
         setCoverImageURI(data.url);
         setMime(data.format);
-        // console.log(data);
-        // console.log('Image Uploaded');
         alert('Cover Image Uploaded');
       })
       .catch((err) => console.log(err));
@@ -102,7 +111,7 @@ const CreateArticle = () => {
       imageMimeType: 'image/jpeg',
       media: [
         {
-          item: CoverimageURI,
+          item: coverImageURI,
           type: `image/${mime}`,
         },
       ],
@@ -112,12 +121,9 @@ const CreateArticle = () => {
     const result = await client.add(JSON.stringify(obj));
     const str = 'https://ipfs.io/ipfs/';
     const finalResult = str.concat(String(result.path));
-    //console.log(finalResult);
-    //console.log(result)
     await createPost(profileId, finalResult);
     alert('Post Published!');
     window.location.href = `/${profileId}/profile`;
-    //console.log(result);
   };
 
   return (
@@ -137,12 +143,12 @@ const CreateArticle = () => {
         {preview ? (
           <div style={{ color: ' #fffffe' }}>
             <h1>{title} </h1>
-            <img style={{ width: '50%' }} src={CoverimageURI} alt={title} />
+            <img style={{ width: '50%' }} src={coverImageURI} alt={title} />
             <div className="preview" dangerouslySetInnerHTML={createMarkup(convertedContent)}></div>
           </div>
         ) : (
           <>
-            <CssTextField
+            <CustomizedInput
               sx={{ mb: 3 }}
               autoComplete="title"
               name="title"
@@ -193,14 +199,6 @@ const CreateArticle = () => {
         <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2, backgroundColor: '#7f5af0' }} onClick={handle}>
           Publish
         </Button>
-        {/* <Button
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2, backgroundColor: '#7f5af0' }}
-          onClick={handlePub}
-        >
-          getPublish
-        </Button> */}
       </div>
     </Container>
   );

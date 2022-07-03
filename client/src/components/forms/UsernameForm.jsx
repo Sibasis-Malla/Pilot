@@ -1,14 +1,20 @@
 /* eslint-disable */
 import React, { useState, useContext, useEffect } from 'react';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import { TextField, Button, styled } from '@mui/material';
-import { createProfile, getProfiles } from '../../Lens/query';
-import { createAccount } from '../../Lens/utils/pilot-utils';
+
+// libraries
+import { TextField, Button, styled, Typography, Grid } from '@mui/material';
+
+// components
 import Loading from '../marginals/loading';
+
+// context
 import Web3Context from '../../context';
 
-const CssTextField = styled(TextField)({
+// lens queries
+import { createProfile, getProfiles } from '../../Lens/query';
+import { createAccount } from '../../Lens/utils/pilot-utils';
+
+const CustomizedInput = styled(TextField)({
   '& label.Mui-focused': {
     color: '#7f5af0',
   },
@@ -28,7 +34,7 @@ const CssTextField = styled(TextField)({
   },
 });
 
-export default function AddressForm() {
+const UsernameForm = () => {
   const { pilotContract, account } = useContext(Web3Context);
   useEffect(() => {
     account.currentAccount && getProfile();
@@ -65,7 +71,6 @@ export default function AddressForm() {
         setFlag(false);
         alert('Try with a different username and Make Sure You have logged in to Lens');
       });
-    //console.log(res);
   };
   const confirmUsername = async () => {
     //setFlag(true)
@@ -99,7 +104,7 @@ export default function AddressForm() {
           </div>
         ) : (
           <Grid item xs={12}>
-            <CssTextField
+            <CustomizedInput
               required
               fullWidth
               id="handleName1"
@@ -141,3 +146,5 @@ export default function AddressForm() {
     </>
   );
 }
+
+export default UsernameForm;

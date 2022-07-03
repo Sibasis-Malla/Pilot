@@ -1,29 +1,29 @@
 /*eslint-disable*/
 import React, { useEffect, useContext, useState } from 'react';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Paper from '@mui/material/Paper';
-import { Typography, Button } from '@mui/material';
-import SmallBlogCard from '../components/profile/SmallBlogCard';
+
+// libraries
+import { Typography, Button, Grid, Stack, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { doesFollow } from '../Lens/query';
-import { follow } from '../Lens/utils/pilot-utils';
-import { getPublications } from '../Lens/query';
 import { compiler } from 'markdown-to-jsx';
 import Web3Context from '../context';
 
-function Sidebar(props) {
+// components
+import SmallBlogCard from '../components/profile/SmallBlogCard';
+
+// lens queries
+import { doesFollow } from '../Lens/query';
+import { follow } from '../Lens/utils/pilot-utils';
+import { getPublications } from '../Lens/query';
+
+const Sidebar = (props) => {
   const [data1, setData1] = useState([]);
   const [follows, setfollows] = useState(true);
   const { lensHub, account } = useContext(Web3Context);
-  useEffect(() => {
-    doesfollow();
-    handlePub1();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account.currentAccount]);
+
   const Follow = async () => {
     await follow(lensHub, props.id);
   };
+
   const doesfollow = async () => {
     const obj = [
       {
@@ -32,9 +32,9 @@ function Sidebar(props) {
       },
     ];
     const res = account.currentAccount ? await doesFollow(obj) : null;
-    //console.log(res ? res.data.doesFollow[0].follows : null);
     setfollows(res ? res.data.doesFollow[0].follows : false);
   };
+
   const handlePub1 = async () => {
     const obj = {
       profileId: props.id,
@@ -49,9 +49,14 @@ function Sidebar(props) {
       return pub.id != props.pubId;
     }
     setData1(result.length >= 1 ? result : null);
-    //console.log(res)
-    //console.log(res.data.publications.items[0].metadata.content);
   };
+
+  useEffect(() => {
+    doesfollow();
+    handlePub1();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [account.currentAccount]);
+
   return (
     <Grid item xs={12} md={4}>
       <Paper
@@ -125,6 +130,6 @@ function Sidebar(props) {
         })}
     </Grid>
   );
-}
+};
 
 export default Sidebar;

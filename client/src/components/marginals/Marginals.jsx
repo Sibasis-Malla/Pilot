@@ -1,10 +1,12 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
+
+// libraries
+import { Typography, CssBaseline, Box } from '@mui/material';
+
+// components
 import Navbar from './Navbar';
 
-export default function Marginals({ children }) {
+const Marginals = ({ children }) => {
   return (
     <Box
       sx={{
@@ -34,4 +36,6 @@ export default function Marginals({ children }) {
       </Box>
     </Box>
   );
-}
+};
+
+export default Marginals;

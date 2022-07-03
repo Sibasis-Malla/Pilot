@@ -1,14 +1,18 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import { getProfiles } from '../../Lens/query';
-import { follow } from '../../Lens/utils/pilot-utils';
-import { doesFollow } from '../../Lens/query';
 
 // Libraries
+import { useParams } from 'react-router-dom';
 import { Grid, Typography, Card, CardContent, Button, IconButton, Stack, Container } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Facebook, Instagram, Mail, Twitter } from '@mui/icons-material';
+
+// contexts
 import Web3Context from '../../context';
+
+// lens queries
+import { getProfiles } from '../../Lens/query';
+import { follow } from '../../Lens/utils/pilot-utils';
+import { doesFollow } from '../../Lens/query';
 
 const UserCard = () => {
   const [data, setData] = useState('');
@@ -113,51 +117,8 @@ const UserCard = () => {
                       <Typography variant="h6">
                         {data && <span style={{ fontWeight: 700 }}>{data.stats.totalPosts}</span>} posts
                       </Typography>
-                      {/* <Typography variant="h6">
-                      <span style={{ fontWeight: 700 }}>67</span> subscribers
-                    </Typography> */}
                     </Stack>
-                    <Stack direction="row" spacing={1} sx={{ mt: 2, color: '#fffffe' }}>
-                      {/* <Typography variant="h6">
-                        <span style={{ fontWeight: 700 }}>Genre</span> -{' '}
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          backgroundColor: '#7f5af0',
-                          color: '#fffffe',
-                          py: 0.5,
-                          px: 2,
-                          borderRadius: '10%',
-                        }}
-                      >
-                        Tech
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          backgroundColor: '#7f5af0',
-                          color: '#fffffe',
-                          py: 0.5,
-                          px: 2,
-                          borderRadius: '10%',
-                        }}
-                      >
-                        Design
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          backgroundColor: '#7f5af0',
-                          color: '#fffffe',
-                          py: 0.5,
-                          px: 2,
-                          borderRadius: '10%',
-                        }}
-                      >
-                        Bussiness
-                      </Typography> */}
-                    </Stack>
+                    <Stack direction="row" spacing={1} sx={{ mt: 2, color: '#fffffe' }}></Stack>
                     <Typography sx={{ mt: 3.5, color: '#94a1b2' }} variant="body1">
                       {data && <>{data.bio}</>}
                     </Typography>
@@ -220,10 +181,6 @@ const useStyles = makeStyles((theme) => ({
   gridPadding: {
     width: '100%',
     paddingLeft: '1.5rem',
-    // display: 'flex',
-    // flexDirection: 'column',
-    // justifyContent: 'center',
-    // alignItems: 'center',
     [theme.breakpoints.down('md')]: {
       marginTop: '2rem',
     },
