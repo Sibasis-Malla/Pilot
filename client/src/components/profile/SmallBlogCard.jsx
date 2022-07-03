@@ -1,13 +1,9 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardActionArea from '@mui/material/CardActionArea';
-import CardContent from '@mui/material/CardContent';
-import { CardMedia, Link } from '@mui/material';
-// import { Link } from 'react-router-dom';
+import React from 'react';
 
-function SmallBlogCard({ title, content, id, img, date }) {
+// libraries
+import { CardMedia, Link, CardContent, CardActionArea, Card, Grid, Typography } from '@mui/material';
+
+const SmallBlogCard = ({ title, content, id, img, date }) => {
   return (
     <Grid item xs={12} md={12} sx={{ my: 2 }}>
       <CardActionArea>
@@ -38,6 +34,6 @@ function SmallBlogCard({ title, content, id, img, date }) {
       </CardActionArea>
     </Grid>
   );
-}
+};
 
 export default SmallBlogCard;

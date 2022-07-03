@@ -1,12 +1,17 @@
 import React, { useState, useContext } from 'react';
-import { Typography, Button } from '@mui/material';
-import Grid from '@mui/material/Grid';
+
+// libraries
+import { Typography, Button,Grid } from '@mui/material';
+
+// lens queries
 import { setProfileImageUriNormal } from '../../Lens/utils/setProfilePic';
+
+// context
 import Web3Context from '../../context';
 
-export default function Review() {
-  const [Profileimage, setProfileImage] = useState();
-  const [ProfileimageURI, setProfileImageURI] = useState();
+const ProfileForm = () => {
+  const [profileImage, setProfileImage] = useState();
+  const [profileImageURI, setProfileImageURI] = useState();
   const { profileId } = useContext(Web3Context);
 
   const handleProfileImage = (event) => {
@@ -15,7 +20,7 @@ export default function Review() {
 
   const UploadImage = async () => {
     const data = new FormData();
-    data.append('file', Profileimage);
+    data.append('file', profileImage);
     data.append('upload_preset', 'mystiq');
     data.append('cloud_name', 'doybtqm8h');
     await fetch('https://api.cloudinary.com/v1_1/doybtqm8h/image/upload', {
@@ -33,7 +38,7 @@ export default function Review() {
 
   const handleProfilePic = async () => {
     // eslint-disable-next-line
-    const res = await setProfileImageUriNormal(profileId, ProfileimageURI);
+    const res = await setProfileImageUriNormal(profileId, profileImageURI);
     // console.log(res);
     alert('profile pic Uploaded');
     window.location.href = `/${profileId}/profile`;
@@ -75,14 +80,8 @@ export default function Review() {
       >
         Sign Up
       </Button>
-      {/* <Button
-        fullWidth
-        variant="contained"
-        sx={{ mt: 3, mb: 2, backgroundColor: '#7f5af0' }}
-        onClick={getProfile}
-      >
-        Profile
-      </Button> */}
     </React.Fragment>
   );
 }
+
+export default ProfileForm;

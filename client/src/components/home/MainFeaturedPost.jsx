@@ -1,12 +1,11 @@
-import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import React from 'react';
+
+// libraries
+import { Paper, Typography, Grid, Box } from '@mui/material';
 import { compiler } from 'markdown-to-jsx';
 import { Link } from 'react-router-dom';
 
-function MainFeaturedPost(props) {
+const MainFeaturedPost = (props) => {
   return (
     <Paper
       sx={{
@@ -20,7 +19,6 @@ function MainFeaturedPost(props) {
         backgroundImage: `url(${props.img})`,
       }}
     >
-      {/* Increase the priority of the hero background image */}
       {<img style={{ display: 'none' }} src={props.img} alt={props.title} />}
       <Box
         sx={{
@@ -69,6 +67,6 @@ function MainFeaturedPost(props) {
       </Grid>
     </Paper>
   );
-}
+};
 
 export default MainFeaturedPost;

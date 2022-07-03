@@ -1,31 +1,30 @@
 /*eslint-disable*/
 import React, { useEffect, useState } from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
+
+// libraries
+import { CssBaseline, Grid, Container } from '@mui/material';
+import { useParams } from 'react-router-dom';
+
+// components
 import Main from './Main';
 import Sidebar from './Sidebar';
-import { useParams } from 'react-router-dom';
+
+// lens queries
 import { getPublication } from '../Lens/query';
 
 export default function Blog() {
   const [data, setData] = useState();
-
   const { pubId } = useParams();
 
-  useEffect(() => {
-    handlePub();
-    //console.log(String(pubId).slice(0,6))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   const handlePub = async () => {
     const res = await getPublication(pubId);
     setData(res.data.publication);
-    //console.log(res.data);
-
-    //setData(res.data.publications.items);
-    //console.log(res.data.publications.items[0].metadata.content);
   };
+
+  useEffect(() => {
+    handlePub();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Container maxWidth="lg" sx={{ my: 10, mt: 9 }}>

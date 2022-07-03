@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
+
+// libraries
 import { CssBaseline, Grid, Typography } from '@mui/material';
+import { compiler } from 'markdown-to-jsx';
+
+// components
 import Sidebar from './Sidebar';
 import SmallBlogCard from '../profile/SmallBlogCard';
+
+// lens queries
 import { getPublications } from '../../Lens/query';
-import { compiler } from 'markdown-to-jsx';
 
 const Trendings = () => {
   const [data1, setData1] = useState([]);
   const [data2, setData2] = useState([]);
   const [data3, setData3] = useState([]);
-  useEffect(() => {
-    handlePub();
-    handlePub2();
-    handlePub3();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
   const handlePub = async () => {
     const obj = {
       profileId: '0x2eee',
@@ -23,9 +24,8 @@ const Trendings = () => {
     };
     const res = await getPublications(obj);
     setData1(res.data.publications.items);
-    //console.log(res)
-    //console.log(res.data.publications.items[0].metadata.content);
   };
+
   const handlePub2 = async () => {
     const obj = {
       profileId: '0x2eae',
@@ -37,6 +37,7 @@ const Trendings = () => {
     //console.log(res)
     //console.log(res.data.publications.items[0].metadata.content);
   };
+
   const handlePub3 = async () => {
     const obj = {
       profileId: '0x2d5b',
@@ -45,9 +46,15 @@ const Trendings = () => {
     };
     const res = await getPublications(obj);
     setData3(res.data.publications.items);
-    //console.log(res)
-    //console.log(res.data.publications.items[0].metadata.content);
   };
+
+  useEffect(() => {
+    handlePub();
+    handlePub2();
+    handlePub3();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <CssBaseline />
