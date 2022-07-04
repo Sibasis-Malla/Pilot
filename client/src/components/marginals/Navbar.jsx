@@ -13,7 +13,9 @@ import {
   Avatar,
   Stack,
   Chip,
+  useMediaQuery,
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
 import { Add, Rocket } from '@mui/icons-material';
@@ -26,6 +28,8 @@ import { getProfiles } from '../../Lens/query';
 
 const Navbar = () => {
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
   const [data, setData] = useState('');
   const { connectWallet, account, loginStat, login, profileId } = useContext(Web3Context);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -75,8 +79,8 @@ const Navbar = () => {
         }}
       >
         <Link to="/" className={classes.logoContainer}>
-          <Rocket sx={{ fontSize: '40px', mr: 0.5 }} />
-          <Typography variant="h4" component="h4" className={classes.logo}>
+          <Rocket sx={{ fontSize: matches ? '40px' : '20px', mr: 0.5 }} />
+          <Typography variant={matches ? 'h4' : 'h6'} component={matches ? 'h4' : 'h6'} className={classes.logo}>
             Pilot
           </Typography>
         </Link>
@@ -104,9 +108,11 @@ const Navbar = () => {
                   }}
                 >
                   <div className={classes.ripple} />
-                  <Typography className={classes.tab} variant="body1">
-                    Connected to Lens
-                  </Typography>
+                  {matches && (
+                    <Typography className={classes.tab} variant="body1">
+                      Connected to Lens
+                    </Typography>
+                  )}
                 </Stack>
               )}
               <Box sx={{ flexGrow: 0, ml: 1 }}>

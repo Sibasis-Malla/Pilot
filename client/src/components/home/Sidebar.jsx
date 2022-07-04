@@ -20,23 +20,8 @@ const Sidebar = () => {
   const { profileId } = useContext(Web3Context);
   const [data, setData] = useState([]);
   const [recent, setRecent] = useState([]);
-  useEffect(() => {
-    getProfile();
-    handlePub();
-    handlePub2();
-  }, [profileId]);
-  const [data1, setData1] = useState([]);
 
   const handlePub = async () => {
-    const obj = {
-      profileId: '0x2eae',
-      publicationTypes: ['POST'],
-      limit: 1,
-    };
-    const res = await getPublications(obj);
-    setData1(res.data.publications.items.length ? res.data.publications.items : null);
-  };
-  const handlePub2 = async () => {
     const obj = {
       profileId: profileId ? profileId : '0x2eee',
       publicationTypes: ['POST'],
@@ -56,6 +41,12 @@ const Sidebar = () => {
 
     setData(res2.data.profiles.items);
   };
+
+  useEffect(() => {
+    getProfile();
+    handlePub();
+  }, [profileId]);
+
   return (
     <>
       <Typography
@@ -149,21 +140,7 @@ const Sidebar = () => {
               date={String(date).slice(3, 10)}
               key={id}
               id={id}
-            />
-          );
-        })}
-      {data1 &&
-        data1.map((obj) => {
-          const { metadata, id, createdAt } = obj;
-          const date = new Date(createdAt);
-          return (
-            <SmallBlogCard
-              content={compiler(String(metadata.content).slice(0, 80))}
-              title={metadata.name}
-              img={metadata.media[0].original.url}
-              date={String(date).slice(3, 10)}
-              key={id}
-              id={id}
+              isSidebar={true}
             />
           );
         })}
