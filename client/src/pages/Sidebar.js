@@ -125,6 +125,7 @@ const Sidebar = (props) => {
               date={String(date).slice(3, 10)}
               key={id}
               id={id}
+              isSidebar={true}
             />
           );
         })}
